@@ -56,7 +56,7 @@ class Tugas2Flutter extends StatelessWidget {
                       shape: BoxShape.circle,
                       border: Border.all(
                         color: Color.fromARGB(125, 225, 145, 5),
-                        width: 7.5,
+                        width: 10,
                       ),
                       // borderRadius: BorderRadius.circular(24),
                       image: DecorationImage(
