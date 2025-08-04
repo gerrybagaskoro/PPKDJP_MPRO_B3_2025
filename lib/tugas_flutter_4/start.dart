@@ -5,95 +5,197 @@ class Tugas4Flutter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> produkLaptop = [
+      {
+        "namaproduk": "Lenovo ThinkPad X1 Carbon",
+        "harga": 21,
+        "deskripsi": "Dikenal sebagai laptop bisnis yang kuat dan ringan.",
+        "gambar": "assets/images/produk/lenovo-thinkpad-x1-carbon.jpg",
+      },
+      {
+        "namaproduk": "HP Spectre x360",
+        "harga": 15,
+        "deskripsi": "Dikenal dengan desain premium dan fleksibilitas 2-in-1.",
+        "gambar": "assets/images/produk/spectre-hp-x360.png",
+      },
+      {
+        "namaproduk": "Dell XPS 13",
+        "harga": 18,
+        "deskripsi": "Dikenal dengan layar InfinityEdge dan performa tinggi.",
+        "gambar": "assets/images/produk/dell-xps-13.jpg",
+      },
+      {
+        "namaproduk": "MSI Prestige 14",
+        "harga": 16,
+        "deskripsi":
+            "Dikenal dengan performa grafis yang kuat dan desain premium.",
+        "gambar": "assets/images/produk/msi-prestige-14-evo-laptop.jpg",
+      },
+      {
+        "namaproduk": "Asus ZenBook 14",
+        "harga": 7,
+        "deskripsi": "Laptop tipis dan ringan serta performa yang baik.",
+        "gambar": "assets/images/produk/asus-zenbook-14.jpg",
+      },
+    ];
     return Scaffold(
-      appBar: AppBar(title: Text("Tugas 4 Flutter")),
-      body: ListView(
-        children: [
-          Row(children: [Text("Nama:")]),
-          SizedBox(height: 8.0),
-          TextField(decoration: InputDecoration(border: OutlineInputBorder())),
-          SizedBox(height: 8.0),
-          Row(children: [Text("Email:")]),
-          SizedBox(height: 8.0),
-          TextField(decoration: InputDecoration(border: OutlineInputBorder())),
-          SizedBox(height: 8.0),
-          Row(children: [Text("No. HP:")]),
-          SizedBox(height: 8.0),
-          TextField(decoration: InputDecoration(border: OutlineInputBorder())),
-          SizedBox(height: 8.0),
-          Row(children: [Text("Deskripsi:")]),
-          SizedBox(height: 8.0),
-          TextField(decoration: InputDecoration(border: OutlineInputBorder())),
-
-          ListTile(
-            title: Text("Daftar Produk"),
-            subtitle: Text("Berikut adalah produk yang tersedia."),
+      backgroundColor: const Color(0xFFF9ECDE),
+      appBar: AppBar(
+        title: Text(
+          "Produk",
+          style: TextStyle(
+            fontSize: 18,
+            fontFamily: "FiraSans",
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
-          GridView.count(
-            shrinkWrap: true,
-            padding: EdgeInsets.all(8.0),
-            crossAxisCount: 3,
-            mainAxisSpacing: 4,
-            crossAxisSpacing: 4,
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    height: 250,
-                    width: 250,
-                    decoration: BoxDecoration(
-                      color: Colors.teal,
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/sushi"),
-                      ),
-                    ),
-                  ),
-                  Center(child: Text("satu")),
-                ],
-              ),
-              Stack(
-                children: [
-                  Container(
-                    height: 250,
-                    width: 250,
-                    decoration: BoxDecoration(color: Colors.blue),
-                  ),
-                  Center(child: Text("dua")),
-                ],
-              ),
-              Stack(
-                children: [
-                  Container(
-                    height: 250,
-                    width: 250,
-                    decoration: BoxDecoration(color: Colors.orange),
-                  ),
-                  Center(child: Text("tiga")),
-                ],
-              ),
-              Stack(
-                children: [
-                  Container(
-                    height: 250,
-                    width: 250,
-                    decoration: BoxDecoration(color: Colors.red),
-                  ),
-                  Center(child: Text("empat")),
-                ],
-              ),
-              Stack(
-                children: [
-                  Container(
-                    height: 250,
-                    width: 250,
-                    decoration: BoxDecoration(color: Colors.cyan),
-                  ),
-                  Center(child: Text("lima")),
-                ],
-              ),
-            ],
+        ),
+        centerTitle: false,
+        backgroundColor: Color.fromARGB(180, 200, 145, 5),
+        leading: Padding(
+          padding: EdgeInsets.only(left: 12.0),
+          child: Icon(Icons.menu, size: 24, color: Colors.white),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: Icon(Icons.account_box, size: 24, color: Colors.white),
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: Icon(Icons.more_vert, size: 24, color: Colors.white),
           ),
         ],
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 8),
+            Text(
+              "Pemesanan Produk",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                fontFamily: "FiraSans",
+              ),
+            ),
+            SizedBox(height: 16),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Nama Pemesan',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.person),
+              ),
+            ),
+            SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'E-mail',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.email),
+              ),
+            ),
+            SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Nomor Telepon',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.phone),
+              ),
+            ),
+            SizedBox(height: 8),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Deskripsi Pembelian',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.description),
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              "Daftar Produk",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 8),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: produkLaptop.length,
+              itemBuilder: (BuildContext context, int index) {
+                // final data = produkLaptop[index];
+                return Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      // height: 200,
+                      // width: double.infinity,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        // color: data["color"],
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.all(2),
+                              padding: EdgeInsets.all(4),
+                              height: 200,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    produkLaptop[index]["gambar"],
+                                    height: 120,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    produkLaptop[index]["namaproduk"],
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    "Harga mulai dari Rp ${produkLaptop[index]["harga"]},999,000",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    produkLaptop[index]["deskripsi"],
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black54,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
