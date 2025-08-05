@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_5/start.dart';
+// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start01.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start.dart';
+// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start.dart';
+// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_5/start01.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start02.dart';
 // import 'package:ppkdjp_mpro_b3_2025/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_2/start.dart';
@@ -37,7 +40,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Tugas4Flutter(),
+      home: Tugas5Flutter(),
     );
   }
 }
