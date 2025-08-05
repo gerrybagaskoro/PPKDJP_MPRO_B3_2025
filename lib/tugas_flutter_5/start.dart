@@ -16,7 +16,12 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Tugas 5 State")),
+      backgroundColor: const Color(0xFFF9ECDE),
+      appBar: AppBar(
+        title: Text("Tugas 5 Flutter - State"),
+        backgroundColor: const Color(0xFFF9ECDE),
+        foregroundColor: Colors.black,
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
@@ -28,12 +33,10 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
         children: [
           Center(),
           Text("1. Elevated Button", style: TextStyle(fontSize: 16)),
-          // SizedBox(height: 8),
+          SizedBox(height: 8),
           ElevatedButton(
             style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all<Color>(
-                const Color.fromARGB(255, 238, 197, 74),
-              ),
+              backgroundColor: WidgetStateProperty.all<Color>(Colors.amber),
             ),
             onPressed: () {
               setState(() {
@@ -46,8 +49,8 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
             child: Text(
               tampilkan
                   ? "Nama saya: Gerry Bagaskoro Putro"
-                  : "ElevatedButton - Tampilkan",
-              style: TextStyle(fontSize: 16),
+                  : "ElevatedButton - Tampilkan Nama",
+              style: TextStyle(fontSize: 16, color: Colors.white),
             ),
           ),
           SizedBox(height: 8),
@@ -57,12 +60,11 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
             margin: EdgeInsets.all(8),
             padding: EdgeInsets.all(6),
             height: 60,
-            width: 60,
+            width: 80,
             child: IconButton(
               icon: const Icon(Icons.favorite),
-              color: warnaDisukai
-                  ? Colors.amber
-                  : const Color.fromARGB(255, 0, 0, 0),
+              color: warnaDisukai ? Colors.red : Colors.grey,
+              iconSize: 40,
               onPressed: () {
                 setState(() {
                   warnaDisukai = !warnaDisukai;
@@ -78,7 +80,7 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
               'Disukai',
               style: TextStyle(
                 fontSize: 18,
-                color: Colors.amber,
+                color: Colors.red,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -99,7 +101,7 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
               style: TextStyle(fontSize: 16),
             ),
           ),
-          SizedBox(height: 8),
+          // SizedBox(height: 8),
           Text("5. InkWell", style: TextStyle(fontSize: 16)),
           SizedBox(height: 8),
           InkWell(
@@ -116,7 +118,8 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   color: Colors.amber,
-                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(color: Colors.grey, width: 2),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(
                   tampilkanNamaInkWell
@@ -131,6 +134,7 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
               ),
             ),
           ),
+          SizedBox(height: 8),
           Text("6. GestureDetector", style: TextStyle(fontSize: 16)),
           SizedBox(height: 8),
           GestureDetector(
@@ -144,20 +148,20 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
               print("Tahan lama");
             },
             child: Container(
-              color: Colors.amber,
+              // color: Colors.amber, //Cause Error
               padding: const EdgeInsets.all(8),
               margin: EdgeInsets.all(2),
-              height: 60,
-              width: 200,
-              // decoration: BoxDecoration(
-              //   borderRadius: BorderRadius.circular(8.0),
-              // ),
-              child: Text(
-                "Tekan Aku",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 2),
+                borderRadius: BorderRadius.circular(16),
+                color: Colors.amber,
+              ),
+              child: const Center(
+                child: Text(
+                  "Tekan Aku",
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),
