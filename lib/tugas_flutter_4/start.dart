@@ -59,7 +59,7 @@ class Tugas4Flutter extends StatelessWidget {
         actions: [
           Padding(
             padding: EdgeInsets.only(right: 16.0),
-            child: Icon(Icons.account_box, size: 24, color: Colors.white),
+            child: Icon(Icons.shopping_bag, size: 24, color: Colors.white),
           ),
           Padding(
             padding: EdgeInsets.only(right: 16.0),
@@ -70,13 +70,75 @@ class Tugas4Flutter extends StatelessWidget {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(8),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            // Expanded(
+            //   child: Container(
+            //     margin: EdgeInsets.all(8),
+            //     padding: EdgeInsets.all(6),
+            //     height: 60,
+            //     width: double.infinity,
+            //     // alignment: Alignment.center,
+            //     decoration: BoxDecoration(
+            //       color: Colors.white,
+            //       border: Border.all(
+            //         color: Color.fromARGB(150, 100, 100, 100),
+            //         width: 2,
+            //       ),
+            //       borderRadius: BorderRadius.circular(24),
+            //     ),
+            //     child: Column(
+            //       children: [
+            //         Icon(
+            //           Icons.email,
+            //           color: Color.fromARGB(255, 100, 100, 100),
+            //         ),
+            //         // SizedBox(height: 6),
+            //         Text(
+            //           "my.gerry139@gmail.com",
+            //           style: TextStyle(fontSize: 12, fontFamily: "FiraSans"),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Expanded(
+            //   child: Container(
+            //     margin: EdgeInsets.all(8),
+            //     padding: EdgeInsets.all(12),
+            //     width: double.infinity,
+            //     alignment: Alignment.center,
+            //     height: 60,
+            //     decoration: BoxDecoration(
+            //       color: Colors.white,
+            //       borderRadius: BorderRadius.circular(24),
+            //       border: Border.all(
+            //         color: Color.fromARGB(150, 100, 100, 100),
+            //         width: 2,
+            //       ),
+            //     ),
+            //     child: Row(
+            //       children: [
+            //         Icon(
+            //           Icons.phone,
+            //           color: const Color.fromARGB(255, 100, 100, 100),
+            //         ),
+            //         // SizedBox(width: 4),
+            //         Spacer(),
+            //         // Spacer(),
+            //         Text(
+            //           '+62 812-8389-9252',
+            //           style: TextStyle(fontSize: 12, fontFamily: "FiraSans"),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             SizedBox(height: 8),
             Text(
               "Pemesanan Produk",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
                 fontFamily: "FiraSans",
               ),
@@ -92,7 +154,7 @@ class Tugas4Flutter extends StatelessWidget {
             SizedBox(height: 8),
             TextField(
               decoration: InputDecoration(
-                labelText: 'E-mail',
+                labelText: 'Surel',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.email),
               ),
@@ -142,7 +204,7 @@ class Tugas4Flutter extends StatelessWidget {
                             Container(
                               margin: EdgeInsets.all(2),
                               padding: EdgeInsets.all(4),
-                              height: 200,
+                              height: 400,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color: Colors.white,
@@ -153,7 +215,7 @@ class Tugas4Flutter extends StatelessWidget {
                                 children: [
                                   Image.asset(
                                     produkLaptop[index]["gambar"],
-                                    height: 120,
+                                    height: 280,
                                     width: double.infinity,
                                     fit: BoxFit.cover,
                                   ),
@@ -181,6 +243,29 @@ class Tugas4Flutter extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.black54,
+                                    ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 4,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: const Color.fromARGB(
+                                        180,
+                                        200,
+                                        145,
+                                        5,
+                                      ),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Text(
+                                      "Masukkan Keranjang",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                      ),
                                     ),
                                   ),
                                 ],
