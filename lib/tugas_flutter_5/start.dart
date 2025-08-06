@@ -21,6 +21,7 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
         title: Text("Tugas 5 Flutter - State"),
         backgroundColor: const Color(0xFFF9ECDE),
         foregroundColor: Colors.black,
+        centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -32,7 +33,10 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
       body: Column(
         children: [
           Center(),
-          Text("1. Elevated Button", style: TextStyle(fontSize: 16)),
+          Text(
+            "1. Elevated Button",
+            style: TextStyle(fontSize: 16, fontFamily: "FiraSans"),
+          ),
           SizedBox(height: 8),
           ElevatedButton(
             style: ButtonStyle(
@@ -54,7 +58,10 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
             ),
           ),
           SizedBox(height: 8),
-          Text("2. IconButton", style: TextStyle(fontSize: 16)),
+          Text(
+            "2. IconButton",
+            style: TextStyle(fontSize: 16, fontFamily: "FiraSans"),
+          ),
           SizedBox(height: 8),
           Container(
             margin: EdgeInsets.all(8),
@@ -79,13 +86,49 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
             Text(
               'Disukai',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 color: Colors.red,
                 fontWeight: FontWeight.bold,
+                fontFamily: "FiraSans",
               ),
             ),
           SizedBox(height: 8),
-          Text("3. TextButton", style: TextStyle(fontSize: 16)),
+          Text(
+            "3. TextButton",
+            style: TextStyle(fontSize: 16, fontFamily: "FiraSans"),
+          ),
+          // Container(
+          //   margin: EdgeInsets.all(8),
+          //   padding: EdgeInsets.all(6),
+          //   width: 200,
+          //   height: 100,
+          //   decoration: BoxDecoration(
+          //     color: Colors.amber,
+          //     border: Border.all(color: Colors.grey, width: 2),
+          //   ),
+          //   child: Center(
+          //     child: TextButton(
+          //       onPressed: () {
+          //         setState(() {
+          //           tampilkanNamaTextButton = !tampilkanNamaTextButton;
+          //         });
+          //         print("tampilkanNamaTextButton");
+          //         print(tampilkanNamaTextButton);
+          //       },
+          //       child: Text(
+          //         tampilkanNamaTextButton
+          //             ? "Ini adalah Text Button"
+          //             : "TextButton - Lihat Selengkapnya",
+          //         style: TextStyle(
+          //           fontSize: 16,
+          //           fontFamily: "FiraSans",
+          //           fontWeight: FontWeight.bold,
+          //           color: Colors.white,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
           TextButton(
             onPressed: () {
               setState(() {
@@ -96,25 +139,45 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
             },
             child: Text(
               tampilkanNamaTextButton
-                  ? "Gerry Bagaskoro Putro"
-                  : "TextButton - Tampilkan",
-              style: TextStyle(fontSize: 16),
+                  ? "Ini adalah Text Button"
+                  : "TextButton - Lihat Selengkapnya",
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: "FiraSans",
+                // fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
           ),
-          // SizedBox(height: 8),
-          Text("5. InkWell", style: TextStyle(fontSize: 16)),
+          if (tampilkanNamaTextButton)
+            Text(
+              'TextButton - Deskripsi Tambahan',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black,
+                // fontWeight: FontWeight.bold,
+                fontFamily: "FiraSans",
+              ),
+            ),
+          SizedBox(height: 8),
+          Text(
+            "5. InkWell",
+            style: TextStyle(fontSize: 16, fontFamily: "FiraSans"),
+          ),
           SizedBox(height: 8),
           InkWell(
             onTap: () {
               setState(() {
                 tampilkanNamaInkWell = !tampilkanNamaInkWell;
               });
-              print("tampilkanNamaInkWell");
+              print("Kotak disentuh");
               print(tampilkanNamaInkWell);
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
+                width: 200,
+                height: 100,
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                   color: Colors.amber,
@@ -122,9 +185,7 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Text(
-                  tampilkanNamaInkWell
-                      ? "Gerry Bagaskoro Putro"
-                      : "InkWell - Tampilkan Nama",
+                  tampilkanNamaInkWell ? "" : "InkWell - Menampilkan Text",
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,
@@ -134,8 +195,21 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
               ),
             ),
           ),
+          // if (tampilkanNamaInkWell)
+          //   Text(
+          //     'Gerry Bagaskoro Putro',
+          //     style: TextStyle(
+          //       fontSize: 18,
+          //       color: Colors.black,
+          //       // fontWeight: FontWeight.bold,
+          //       fontFamily: "FiraSans",
+          //     ),
+          //   ),
           SizedBox(height: 8),
-          Text("6. GestureDetector", style: TextStyle(fontSize: 16)),
+          Text(
+            "6. GestureDetector",
+            style: TextStyle(fontSize: 16, fontFamily: "FiraSans"),
+          ),
           SizedBox(height: 8),
           GestureDetector(
             onDoubleTap: () {
@@ -151,8 +225,8 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
               // color: Colors.amber, //Cause Error
               padding: const EdgeInsets.all(8),
               margin: EdgeInsets.all(2),
-              width: 120,
-              height: 120,
+              width: 200,
+              height: 100,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey, width: 2),
                 borderRadius: BorderRadius.circular(16),
@@ -161,7 +235,12 @@ class _Tugas5FlutterState extends State<Tugas5Flutter> {
               child: const Center(
                 child: Text(
                   "Tekan Aku",
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontFamily: "FiraSans",
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
