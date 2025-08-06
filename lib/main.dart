@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start.dart';
+// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start01.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start01.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Tugas6Slicing(),
+      home: Tugas6FlutterSlicing(),
     );
   }
 }
