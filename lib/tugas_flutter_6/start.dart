@@ -101,12 +101,12 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                         }
                         return null;
                       },
-                      onTap: () {
-                        // Trigger validation when field is tapped
-                        if (_formKey.currentState != null) {
-                          _formKey.currentState!.validate();
-                        }
-                      },
+                      // onTap: () {
+                      //   // Trigger validation when field is tapped
+                      //   if (_formKey.currentState != null) {
+                      //     _formKey.currentState!.validate();
+                      //   }
+                      // },
                     ),
                     SizedBox(height: 8),
                     TextFormField(
