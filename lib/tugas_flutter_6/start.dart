@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class Tugas6FlutterSlicing extends StatefulWidget {
   const Tugas6FlutterSlicing({super.key});
@@ -9,6 +10,21 @@ class Tugas6FlutterSlicing extends StatefulWidget {
 
 class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    // Initialize any controllers or variables here if needed
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    // Dispose of any controllers or resources here if needed
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +36,6 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
           "Login",
           style: TextStyle(
             fontSize: 18,
-            // fontFamily: "FiraSans",
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
@@ -51,21 +66,20 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'Welcome back please',
+                    'Welcome back please\nsign in again',
                     style: TextStyle(fontSize: 14, color: Colors.grey),
-                  ),
-                  Text(
-                    'sign in again',
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
               SizedBox(height: 80),
               Form(
                 key: _formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: emailController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         prefixIcon: const Icon(
@@ -73,9 +87,6 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                           color: Colors.white,
                         ),
                         labelText: 'Email',
-                        // border: OutlineInputBorder(
-                        //   // borderRadius: BorderRadius.circular(16),
-                        // ),
                         labelStyle: TextStyle(color: Colors.white),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white, width: 2),
@@ -90,14 +101,20 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                         }
                         return null;
                       },
+                      onTap: () {
+                        // Trigger validation when field is tapped
+                        if (_formKey.currentState != null) {
+                          _formKey.currentState!.validate();
+                        }
+                      },
                     ),
                     SizedBox(height: 8),
                     TextFormField(
+                      controller: passwordController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
                         labelText: 'Password',
-                        // border: OutlineInputBorder(),
                         labelStyle: TextStyle(color: Colors.white),
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white, width: 2),
@@ -119,44 +136,45 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                         //Error dan sukses menggunakan ScaffoldMessenger dan formKey
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Form Validasi Berhasil")),
+                            SnackBar(content: Text("Login Berhasil!")),
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text("Peringatan"),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text("Login Gagal"),
+                                    SizedBox(height: 20),
+                                    Lottie.asset(
+                                      'assets/images/animations/error.json',
+                                      width: 200,
+                                      height: 200,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ],
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: Text("Batal"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text("Lanjutkan"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
                           );
                         }
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text("Email anda tidak sesuai"),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text("Silakan Masukkan email yang valid"),
-                                  SizedBox(height: 20),
-                                  // Lottie.asset(
-                                  //   'assets/images/animations/success.json',
-                                  //   width: 90,
-                                  //   height: 100,
-                                  //   fit: BoxFit.cover,
-                                  // ),
-                                ],
-                              ),
-                              actions: [
-                                TextButton(
-                                  child: Text("Batal"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                TextButton(
-                                  child: Text("Ok, Siap"),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(300, 60),
@@ -190,11 +208,9 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
               const SizedBox(height: 24),
               // Center(),
               Column(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Center(),
-                  // Tombol Facebook
+                  // Tombol login with Facebook
                   ElevatedButton.icon(
                     onPressed: () {
                       print("Login with Facebook");
@@ -210,6 +226,7 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                     ),
                   ),
                   SizedBox(height: 16),
+                  // Tombol Login with Gmail
                   ElevatedButton.icon(
                     onPressed: () {
                       print("Login with Gmail");
