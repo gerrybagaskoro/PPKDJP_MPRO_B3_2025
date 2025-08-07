@@ -282,3 +282,5 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
     );
   }
 }
+
+// Tugas 6 Flutter - Finish
