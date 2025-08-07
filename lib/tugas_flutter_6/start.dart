@@ -99,6 +99,9 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                         if (!value.contains("@")) {
                           return "Email tidak valid";
                         }
+                        if (!value.contains(".com")) {
+                          return "Email tidak valid";
+                        }
                         return null;
                       },
                       // onTap: () {
