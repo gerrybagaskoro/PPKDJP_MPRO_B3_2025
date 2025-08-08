@@ -17,6 +17,15 @@ class _HalamanKosong01State extends State<HalamanKosong01> {
         backgroundColor: const Color(0xFF00224F),
       ),
       backgroundColor: const Color(0xFF00224F),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // Kembali ke halaman sebelumnya (LoginPage)
+            Navigator.pop(context);
+          },
+          child: const Text("Kembali ke login page"),
+        ),
+      ),
     );
   }
 }
