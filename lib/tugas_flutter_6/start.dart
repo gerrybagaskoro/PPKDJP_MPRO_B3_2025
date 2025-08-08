@@ -88,9 +88,9 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                         ),
                         labelText: 'Email',
                         labelStyle: TextStyle(color: Colors.white),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white, width: 2),
-                        ),
+                        // focusedBorder: const OutlineInputBorder(
+                        //   borderSide: BorderSide(color: Colors.white, width: 2),
+                        // ),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -119,9 +119,9 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                         prefixIcon: const Icon(Icons.lock, color: Colors.white),
                         labelText: 'Password',
                         labelStyle: TextStyle(color: Colors.white),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white, width: 2),
-                        ),
+                        // focusedBorder: const OutlineInputBorder(
+                        //   borderSide: BorderSide(color: Colors.white, width: 2),
+                        // ),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
