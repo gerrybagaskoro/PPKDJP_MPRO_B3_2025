@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start01.dart';
+import 'package:ppkdjp_mpro_b3_2025/emptyform01.dart';
 
 class Tugas6FlutterSlicing extends StatefulWidget {
   const Tugas6FlutterSlicing({super.key});
@@ -151,8 +151,7 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    const Tugas6FlutterSlicing01(),
+                                builder: (context) => const HalamanKosong01(),
                               ),
                             );
                           });
@@ -185,14 +184,14 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                                   TextButton(
                                     child: Text("Lanjutkan"),
                                     onPressed: () {
-                                      // Navigator.of(context).pop();
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              Tugas6FlutterSlicing01(),
-                                        ),
-                                      );
+                                      Navigator.of(context).pop();
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) =>
+                                      //         Tugas6FlutterSlicing01(),
+                                      //   ),
+                                      // );
                                     },
                                   ),
                                 ],
