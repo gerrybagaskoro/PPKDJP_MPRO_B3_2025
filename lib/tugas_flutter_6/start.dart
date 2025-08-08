@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start01.dart';
 
 class Tugas6FlutterSlicing extends StatefulWidget {
   const Tugas6FlutterSlicing({super.key});
@@ -139,8 +140,22 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                         //Error dan sukses menggunakan ScaffoldMessenger dan formKey
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Login Berhasil!")),
+                            SnackBar(
+                              content: Text(
+                                "Login Berhasil! Mengarahkan ke halaman selanjutnya",
+                              ),
+                              duration: Duration(seconds: 3),
+                            ),
                           );
+                          Future.delayed(const Duration(seconds: 3), () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const Tugas6FlutterSlicing01(),
+                              ),
+                            );
+                          });
                         } else {
                           showDialog(
                             context: context,
@@ -170,7 +185,14 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                                   TextButton(
                                     child: Text("Lanjutkan"),
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      // Navigator.of(context).pop();
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              Tugas6FlutterSlicing01(),
+                                        ),
+                                      );
                                     },
                                   ),
                                 ],

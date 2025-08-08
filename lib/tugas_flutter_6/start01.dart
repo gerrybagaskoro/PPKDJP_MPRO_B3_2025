@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start.dart';
 
 class Tugas6FlutterSlicing01 extends StatefulWidget {
   const Tugas6FlutterSlicing01({super.key});
@@ -148,7 +149,13 @@ class _Tugas6FlutterSlicing01State extends State<Tugas6FlutterSlicing01> {
                                   TextButton(
                                     child: Text("Ok, Siap"),
                                     onPressed: () {
-                                      Navigator.of(context).pop();
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              Tugas6FlutterSlicing(),
+                                        ),
+                                      );
                                     },
                                   ),
                                 ],
