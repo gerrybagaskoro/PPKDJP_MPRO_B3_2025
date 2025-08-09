@@ -62,10 +62,10 @@ class HalamanB extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 // Ganti Halaman B dengan Halaman C (B hilang, A masih ada)
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const PageC()),
-                );
+                // Navigator.pushReplacement(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => const PageC()),
+                // );
               },
               child: const Text('Ke Halaman C (pushReplacement)'),
             ),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:ppkdjp_mpro_b3_2025/emptyform01.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
 
-class Tugas6FlutterSlicing extends StatefulWidget {
-  const Tugas6FlutterSlicing({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<Tugas6FlutterSlicing> createState() => _Tugas6FlutterSlicingState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -151,7 +151,7 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const HalamanKosong01(),
+                                builder: (context) => const TugasFlutter7(),
                               ),
                             );
                           });
@@ -189,7 +189,7 @@ class _Tugas6FlutterSlicingState extends State<Tugas6FlutterSlicing> {
                                       //   context,
                                       //   MaterialPageRoute(
                                       //     builder: (context) =>
-                                      //         Tugas6FlutterSlicing01(),
+                                      //         LoginScreen01(),
                                       //   ),
                                       // );
                                     },
