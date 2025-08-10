@@ -17,30 +17,15 @@ class _DrawerFlutter7State extends State<DrawerFlutter7> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Drawer")),
+      // appBar: AppBar(title: Text("Drawer")),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Center(),
-
-              // Container(
-              //   height: 200,
-              //   width: double.infinity,
-              //   decoration: BoxDecoration(
-
-              //     color: Colors.grey,
-              //     borderRadius: BorderRadius.circular(12),
-              //   ),
-              //   child: Text(
-
-              //     "Perjanjian Pengguna",
-              //     style: TextStyle(fontFamily: "FiraSans", fontSize: 16,),
-              //   ),
-              // ),
               SizedBox(height: 8),
-              Text("Mode Gelap"),
+              Text("Aktifkan Mode Gelap"),
               Row(
                 children: [
                   Switch(
@@ -52,7 +37,11 @@ class _DrawerFlutter7State extends State<DrawerFlutter7> {
                       });
                     },
                   ),
-                  Text(diCheckSwitch == true ? "Hidup" : "Tidak Hidup"),
+                  Text(
+                    diCheckSwitch == true
+                        ? "Mode Gelap Aktif"
+                        : "Mode Terang Aktif",
+                  ),
                 ],
               ),
               SizedBox(height: 8),
@@ -133,31 +122,4 @@ Widget build(BuildContext context) {
       ),
     ),
   );
-}
-
-class CheckBox extends StatefulWidget {
-  const CheckBox({super.key});
-
-  @override
-  State<CheckBox> createState() => _CheckBoxState();
-}
-
-class _CheckBoxState extends State<CheckBox> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Halaman A')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const PageB()),
-            // );
-          },
-          child: Text("data"),
-        ),
-      ),
-    );
-  }
 }

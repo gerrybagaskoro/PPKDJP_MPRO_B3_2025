@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/inputwidget_aio.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start01.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start01.dart';
@@ -11,6 +13,7 @@ import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_3/start.dart';
 
 void main() {
+  initializeDateFormatting("id_ID");
   runApp(const MyApp());
 }
 
@@ -23,6 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        datePickerTheme: DatePickerThemeData(),
         // This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
@@ -41,8 +45,16 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       // Menggunakan Navigator.pushNamed
-      initialRoute: '/login',
-      routes: {'/login': (context) => LoginScreen()},
+      initialRoute: '/',
+      routes: {
+        '/': (context) => LoginScreen(),
+        Flutter7CheckBoxAIO.id: (context) => Flutter7CheckBoxAIO(),
+        Flutter7SwitchAIO.id: (context) => Flutter7SwitchAIO(),
+        Flutter7DropDownButtonAIO.id: (context) => Flutter7SwitchAIO(),
+        Flutter7DatePickerAIO.id: (context) => Flutter7DatePickerAIO(),
+        Flutter7TimePickerAIO.id: (context) => Flutter7TimePickerAIO(),
+        AboutApps.id: (context) => AboutApps(),
+      },
     );
   }
 }
