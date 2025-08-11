@@ -1,125 +1,90 @@
 import 'package:flutter/material.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/inputwidget_aio.dart';
 
-class DrawerFlutter7 extends StatefulWidget {
-  const DrawerFlutter7({super.key});
+class DrawerMenu extends StatelessWidget {
+  const DrawerMenu({super.key});
 
-  @override
-  State<DrawerFlutter7> createState() => _DrawerFlutter7State();
-}
-
-class _DrawerFlutter7State extends State<DrawerFlutter7> {
-  void onItemTap(int index) {}
-  bool diCheck = false;
-  bool diCheckSwitch = false;
-  String? dropdownSelect;
-  DateTime? selectedDate;
-  TimeOfDay? selectedTime;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(title: Text("Drawer")),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Center(),
-              SizedBox(height: 8),
-              Text("Aktifkan Mode Gelap"),
-              Row(
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          Container(
+            height: 256, // Tinggi header
+            color: const Color(0xFF00224F),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Switch(
-                    activeColor: Colors.amber,
-                    value: diCheckSwitch,
-                    onChanged: (value) {
-                      setState(() {
-                        diCheckSwitch = value;
-                      });
-                    },
-                  ),
+                  Icon(Icons.task, size: 48, color: Colors.white),
+                  SizedBox(height: 12),
                   Text(
-                    diCheckSwitch == true
-                        ? "Mode Gelap Aktif"
-                        : "Mode Terang Aktif",
+                    "Tugas Flutter",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 8),
-              Text("Kategori Produk"),
-              SizedBox(height: 8),
-              DropdownButton(
-                value: dropdownSelect,
-                hint: Text("Pilih Kategori Produk"),
-                items: ["Elektronik", "Pakaian", "Makanan"].map((String value) {
-                  return DropdownMenuItem(value: value, child: Text(value));
-                }).toList(),
-                onChanged: (value) {
-                  setState(() {});
-                  dropdownSelect = value;
-                },
-              ),
-              SizedBox(height: 8),
-              Text("Pilih Tanggal Lahir"),
-              SizedBox(height: 8),
-              ElevatedButton(
-                child: Text("Pilih Tanggal Lahir"),
-                onPressed: () async {
-                  final DateTime? pickerDate = await showDatePicker(
-                    context: context,
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2100),
-                  );
-                  if (pickerDate != null) {
-                    setState(() {});
-                    selectedDate = pickerDate;
-                  }
-                },
-              ),
-
-              SizedBox(height: 24),
-              Text("Atur Pengingat"),
-              SizedBox(height: 8),
-              ElevatedButton(
-                child: Text("Pilih Waktu Pengingat:"),
-                onPressed: () async {
-                  final TimeOfDay? pickerDate = await showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay.now(),
-                  );
-                  if (pickerDate != null) {
-                    setState(() {});
-                    selectedTime = pickerDate;
-                  }
-                },
-              ),
-              SizedBox(height: 8),
-              Text(
-                selectedTime == null
-                    ? "Pilih jam dahulu"
-                    : "${selectedTime!.hour.toString()} : ${selectedTime!.minute.toString()}",
-              ),
-            ],
+            ),
           ),
-        ),
+          ListTile(
+            leading: Icon(Icons.check_box),
+            title: Text("Checkbox"),
+            onTap: () {
+              // onItemTap(0);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CheckBoxAIO()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.switch_access_shortcut),
+            title: Text("Switch"),
+            onTap: () {
+              // onItemTap(0);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SwitchAIO()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.arrow_drop_down),
+            title: Text("Dropdown"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DropDownButtonAIO()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.date_range),
+            title: Text("Tanggal"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DatePickerAIO()),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.timelapse),
+            title: Text("Jam"),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TimePickerAIO()),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
-}
-
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(title: const Text('Halaman A')),
-    body: Center(
-      child: ElevatedButton(
-        onPressed: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => const PageB()),
-          // );
-        },
-        child: Text("data"),
-      ),
-    ),
-  );
 }

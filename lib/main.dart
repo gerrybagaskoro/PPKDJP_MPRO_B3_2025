@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/inputwidget_aio.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start01.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start01.dart';
@@ -48,12 +49,19 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(),
-        Flutter7CheckBoxAIO.id: (context) => Flutter7CheckBoxAIO(),
-        Flutter7SwitchAIO.id: (context) => Flutter7SwitchAIO(),
-        Flutter7DropDownButtonAIO.id: (context) => Flutter7SwitchAIO(),
-        Flutter7DatePickerAIO.id: (context) => Flutter7DatePickerAIO(),
-        Flutter7TimePickerAIO.id: (context) => Flutter7TimePickerAIO(),
-        AboutApps.id: (context) => AboutApps(),
+        '/start': (context) => TugasFlutter7(),
+        '/checkbox': (context) => CheckBoxAIO(),
+        '/switch': (context) => SwitchAIO(),
+        '/dropdown': (context) => DropDownButtonAIO(),
+        '/datepicker': (context) => DatePickerAIO(),
+        '/timepicker': (context) => TimePickerAIO(),
+
+        // Flutter7CheckBoxAIO.id: (context) => Flutter7CheckBoxAIO(),
+        // Flutter7SwitchAIO.id: (context) => Flutter7SwitchAIO(),
+        // Flutter7DropDownButtonAIO.id: (context) => Flutter7SwitchAIO(),
+
+        // Flutter7TimePickerAIO.id: (context) => Flutter7TimePickerAIO(),
+        // AboutApps.id: (context) => AboutApps(),
       },
     );
   }

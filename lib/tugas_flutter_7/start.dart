@@ -81,9 +81,7 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
                 // onItemTap(0);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => Flutter7CheckBoxAIO(),
-                  ),
+                  MaterialPageRoute(builder: (context) => CheckBoxAIO()),
                 );
               },
             ),
@@ -94,7 +92,7 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
                 // onItemTap(0);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Flutter7SwitchAIO()),
+                  MaterialPageRoute(builder: (context) => SwitchAIO()),
                 );
               },
             ),
@@ -104,9 +102,7 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => Flutter7DropDownButtonAIO(),
-                  ),
+                  MaterialPageRoute(builder: (context) => DropDownButtonAIO()),
                 );
               },
             ),
@@ -116,9 +112,7 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => Flutter7DatePickerAIO(),
-                  ),
+                  MaterialPageRoute(builder: (context) => DatePickerAIO()),
                 );
               },
             ),
@@ -128,9 +122,7 @@ class _TugasFlutter7State extends State<TugasFlutter7> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => Flutter7TimePickerAIO(),
-                  ),
+                  MaterialPageRoute(builder: (context) => TimePickerAIO()),
                 );
               },
             ),

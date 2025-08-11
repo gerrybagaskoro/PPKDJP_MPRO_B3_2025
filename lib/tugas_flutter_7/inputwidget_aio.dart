@@ -2,20 +2,22 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/drawer.dart';
 
-class Flutter7CheckBoxAIO extends StatefulWidget {
-  const Flutter7CheckBoxAIO({super.key});
+class CheckBoxAIO extends StatefulWidget {
+  const CheckBoxAIO({super.key});
   static const id = "/checkbox";
 
   @override
-  State<Flutter7CheckBoxAIO> createState() => _Flutter7CheckBoxAIOState();
+  State<CheckBoxAIO> createState() => _CheckBoxAIOState();
 }
 
-class _Flutter7CheckBoxAIOState extends State<Flutter7CheckBoxAIO> {
+class _CheckBoxAIOState extends State<CheckBoxAIO> {
   bool checkBoxAIO = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerMenu(),
       appBar: AppBar(title: Text("Syarat dan Ketentuan Pengguna")),
       body: Center(
         child: Padding(
@@ -70,19 +72,20 @@ class _Flutter7CheckBoxAIOState extends State<Flutter7CheckBoxAIO> {
   }
 }
 
-class Flutter7SwitchAIO extends StatefulWidget {
-  const Flutter7SwitchAIO({super.key});
+class SwitchAIO extends StatefulWidget {
+  const SwitchAIO({super.key});
   static const id = "/switch";
 
   @override
-  State<Flutter7SwitchAIO> createState() => _Flutter7SwitchAIOState();
+  State<SwitchAIO> createState() => _SwitchAIOState();
 }
 
-class _Flutter7SwitchAIOState extends State<Flutter7SwitchAIO> {
+class _SwitchAIOState extends State<SwitchAIO> {
   bool switchAIO = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerMenu(),
       backgroundColor: switchAIO ? Colors.black54 : null,
       appBar: AppBar(title: Text("Mode Gelap")),
       body: Center(
@@ -123,20 +126,20 @@ class _Flutter7SwitchAIOState extends State<Flutter7SwitchAIO> {
   }
 }
 
-class Flutter7DropDownButtonAIO extends StatefulWidget {
-  const Flutter7DropDownButtonAIO({super.key});
+class DropDownButtonAIO extends StatefulWidget {
+  const DropDownButtonAIO({super.key});
   static const id = "/dropdown";
 
   @override
-  State<Flutter7DropDownButtonAIO> createState() =>
-      _Flutter7DropDownButtonAIOState();
+  State<DropDownButtonAIO> createState() => _DropDownButtonAIOState();
 }
 
-class _Flutter7DropDownButtonAIOState extends State<Flutter7DropDownButtonAIO> {
+class _DropDownButtonAIOState extends State<DropDownButtonAIO> {
   String? pilihDropDown;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerMenu(),
       appBar: AppBar(title: Text("Produk")),
       body: Center(
         child: Column(
@@ -163,19 +166,20 @@ class _Flutter7DropDownButtonAIOState extends State<Flutter7DropDownButtonAIO> {
   }
 }
 
-class Flutter7DatePickerAIO extends StatefulWidget {
-  const Flutter7DatePickerAIO({super.key});
+class DatePickerAIO extends StatefulWidget {
+  const DatePickerAIO({super.key});
   static const id = "/datepicker";
 
   @override
-  State<Flutter7DatePickerAIO> createState() => _Flutter7DatePickerAIOState();
+  State<DatePickerAIO> createState() => _DatePickerAIOState();
 }
 
-class _Flutter7DatePickerAIOState extends State<Flutter7DatePickerAIO> {
+class _DatePickerAIOState extends State<DatePickerAIO> {
   DateTime? pilihTanggal;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerMenu(),
       appBar: AppBar(title: Text("Tanggal Lahir")),
       body: Center(
         child: Padding(
@@ -217,19 +221,20 @@ class _Flutter7DatePickerAIOState extends State<Flutter7DatePickerAIO> {
   }
 }
 
-class Flutter7TimePickerAIO extends StatefulWidget {
-  const Flutter7TimePickerAIO({super.key});
+class TimePickerAIO extends StatefulWidget {
+  const TimePickerAIO({super.key});
   static const id = "/timepicker";
 
   @override
-  State<Flutter7TimePickerAIO> createState() => _Flutter7TimePickerAIOState();
+  State<TimePickerAIO> createState() => _TimePickerAIOState();
 }
 
-class _Flutter7TimePickerAIOState extends State<Flutter7TimePickerAIO> {
+class _TimePickerAIOState extends State<TimePickerAIO> {
   TimeOfDay? pilihWaktu;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerMenu(),
       appBar: AppBar(title: Text("Waktu Pengingat")),
       body: Center(
         child: Column(
@@ -265,6 +270,7 @@ class _Flutter7TimePickerAIOState extends State<Flutter7TimePickerAIO> {
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+  static const id = "/dashboard";
 
   @override
   State<HomePage> createState() => _HomePageState();
