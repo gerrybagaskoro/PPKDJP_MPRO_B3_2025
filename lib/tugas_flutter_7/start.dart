@@ -1,158 +1,121 @@
 import 'package:flutter/material.dart';
-import 'package:ppkdjp_mpro_b3_2025/extensions/navigations.dart';
-// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_5/start.dart';
-// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/drawer.dart';
-// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/inputwidget/checkbox.dart';
-// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/inputwidget/switch.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/inputwidget_aio.dart';
 
-class TugasFlutter7 extends StatefulWidget {
-  const TugasFlutter7({super.key});
-  static const id = "/start";
+// import 'drawer.dart';
+import 'aboutapp.dart';
+import 'dashboard.dart';
+import 'inputwidget_aio.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<TugasFlutter7> createState() => _TugasFlutter7State();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _TugasFlutter7State extends State<TugasFlutter7> {
-  int _pilihIndexDrawer = 0;
-  final List<Widget> _pages = [
-    // Flutter7CheckBox(),
-    // Flutter7Switch(),
-    // Flutter7DropDownButton(),
-    // Flutter7DatePicker(),
-    // Flutter7TimePicker(),
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
 
-    // Input Widget AIO (ALL IN ONE File)
-    HomePage(),
-    AboutApps(),
-    // Flutter7CheckBoxAIO(),
-    // Flutter7SwitchAIO(),
-    // Flutter7DropDownButtonAIO(),
-    // Flutter7DatePickerAIO(),
-    // Flutter7TimePickerAIO(),
+  // Semua halaman jadi satu list (0-2: bottomnav, 3-6: drawer)
+  final List<Widget> _pages = [
+    Dashboard(), // index 0
+    AboutApp(), // index 1
+    CheckBoxAIO(), // index 2
+    SwitchAIO(), // index 3
+    DropDownButtonAIO(), // index 4
+    DatePickerAIO(), // index 5
+    TimePickerAIO(), // index 6
   ];
-  void onItemTap(int index) {
+
+  void _onItemTapped(int index) {
     setState(() {
-      _pilihIndexDrawer = index;
+      _selectedIndex = index;
     });
-    context.pop();
+  }
+
+  void _onDrawerTapped(int index) {
+    Navigator.pop(context); // Tutup drawer
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Tugas Flutter 7 & 8",
           style: TextStyle(fontFamily: "FiraSans", fontSize: 20),
         ),
+        centerTitle: true,
       ),
-      // Drawer
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            Container(
-              height: 256, // Tinggi header
-              color: const Color(0xFF00224F),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.task, size: 48, color: Colors.white),
-                    SizedBox(height: 12),
-                    Text(
-                      "Tugas Flutter",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Color(0xFF00224F)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.task, size: 64, color: Colors.white),
+                  Text(
+                    "Tugas Flutter 7",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              // Text(
+              //   'Menu Drawer',
+              //   style: TextStyle(color: Colors.white, fontSize: 20),
+              // ),
             ),
             ListTile(
               leading: Icon(Icons.check_box),
-              title: Text("Checkbox"),
-              onTap: () {
-                // onItemTap(0);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CheckBoxAIO()),
-                );
-              },
+              title: const Text("CheckBox"),
+              onTap: () => _onDrawerTapped(2),
             ),
             ListTile(
               leading: Icon(Icons.switch_access_shortcut),
-              title: Text("Switch"),
-              onTap: () {
-                // onItemTap(0);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SwitchAIO()),
-                );
-              },
+              title: const Text("Switch"),
+              onTap: () => _onDrawerTapped(3),
             ),
             ListTile(
               leading: Icon(Icons.arrow_drop_down),
               title: Text("Dropdown"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DropDownButtonAIO()),
-                );
-              },
+              onTap: () => _onDrawerTapped(4),
             ),
             ListTile(
               leading: Icon(Icons.date_range),
               title: Text("Tanggal"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DatePickerAIO()),
-                );
-              },
+              onTap: () => _onDrawerTapped(5),
             ),
             ListTile(
               leading: Icon(Icons.timelapse),
               title: Text("Jam"),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TimePickerAIO()),
-                );
-              },
+              onTap: () => _onDrawerTapped(6),
             ),
           ],
         ),
       ),
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        currentIndex: _selectedIndex > 1 ? 0 : _selectedIndex,
+        // Kalau lagi buka drawer menu, bottomnav tetap highlight dashboard
+        onTap: _onItemTapped,
+        items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.android_outlined),
-            label: 'About',
+            icon: Icon(Icons.dashboard),
+            label: 'Dashboard',
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.android), label: 'About'),
+          // BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
         ],
-        currentIndex: _pilihIndexDrawer,
-        selectedItemColor: const Color(0xFF00224F),
-        unselectedItemColor: Colors.grey,
-        onTap: (value) {
-          print(value);
-          print("Nilai SelecetedIndex Before : $_pilihIndexDrawer");
-
-          print("Nilai BotNav : $value");
-          setState(() {
-            _pilihIndexDrawer = value;
-          });
-          print("Nilai SelecetedIndex After: $_pilihIndexDrawer");
-        },
-        // onTap: _onItemTapped,
       ),
-      body: Center(child: _pages[_pilihIndexDrawer]),
     );
   }
 }

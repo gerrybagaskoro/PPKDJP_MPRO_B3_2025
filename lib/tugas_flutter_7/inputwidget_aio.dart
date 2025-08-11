@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/drawer.dart';
 
 class CheckBoxAIO extends StatefulWidget {
   const CheckBoxAIO({super.key});
@@ -16,57 +15,64 @@ class _CheckBoxAIOState extends State<CheckBoxAIO> {
   bool checkBoxAIO = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const DrawerMenu(),
-      appBar: AppBar(title: Text("Syarat dan Ketentuan Pengguna")),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Syarat dan Ketentuan",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          const Text(
+            "Syarat dan Ketentuan",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 12),
+
+          // Syarat dan Ketentuan
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade400),
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.red.shade100,
               ),
-              SizedBox(height: 16),
-              SizedBox(
-                height: 600,
-                child: SingleChildScrollView(
-                  child: Text(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                    textAlign: TextAlign.justify,
+              child: SingleChildScrollView(
+                child: const Text(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                  "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                  "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                  "\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+          // Checkbox
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Checkbox(
+                activeColor: Colors.black,
+                value: checkBoxAIO,
+                onChanged: (value) {
+                  setState(() {
+                    checkBoxAIO = value!;
+                  });
+                },
+              ),
+              Expanded(
+                child: Text(
+                  checkBoxAIO
+                      ? "Lanjutkan pendaftaran diperbolehkan"
+                      : "Anda belum bisa melanjutkan",
+                  style: TextStyle(
+                    color: checkBoxAIO ? Colors.green : Colors.red,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
-              // SizedBox(height: 8),
-              Spacer(),
-              Row(
-                children: [
-                  Checkbox(
-                    activeColor: Colors.grey,
-                    value: checkBoxAIO,
-                    onChanged: (value) {
-                      setState(() {
-                        checkBoxAIO = value!;
-                      });
-                    },
-                  ),
-                  Text(
-                    checkBoxAIO == true
-                        ? "Lanjutkan pendaftaran diperbolehkan"
-                        : "Anda belum bisa melanjutkan",
-                  ),
-                ],
-              ),
-              // Spacer(),
-              SizedBox(height: 16),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
@@ -84,23 +90,20 @@ class _SwitchAIOState extends State<SwitchAIO> {
   bool switchAIO = false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const DrawerMenu(),
-      backgroundColor: switchAIO ? Colors.black54 : null,
-      appBar: AppBar(title: Text("Mode Gelap")),
-      body: Center(
+    return Container(
+      color: switchAIO ? Colors.black54 : null,
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 8),
             Text(
               "Aktifkan Mode Gelap",
-              style: TextStyle(color: switchAIO == true ? Colors.white : null),
+              style: TextStyle(color: switchAIO ? Colors.white : null),
             ),
             SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Switch(
                   activeColor: Colors.white,
@@ -112,10 +115,8 @@ class _SwitchAIOState extends State<SwitchAIO> {
                   },
                 ),
                 Text(
-                  switchAIO == true ? "Mode Gelap Aktif" : "Mode Terang Aktif",
-                  style: TextStyle(
-                    color: switchAIO == true ? Colors.white : null,
-                  ),
+                  switchAIO ? "Mode Gelap Aktif" : "Mode Terang Aktif",
+                  style: TextStyle(color: switchAIO ? Colors.white : null),
                 ),
               ],
             ),
@@ -138,10 +139,8 @@ class _DropDownButtonAIOState extends State<DropDownButtonAIO> {
   String? pilihDropDown;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const DrawerMenu(),
-      appBar: AppBar(title: Text("Produk")),
-      body: Center(
+    return Container(
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -155,8 +154,9 @@ class _DropDownButtonAIOState extends State<DropDownButtonAIO> {
                 return DropdownMenuItem(value: value, child: Text(value));
               }).toList(),
               onChanged: (value) {
-                setState(() {});
-                pilihDropDown = value!;
+                setState(() {
+                  pilihDropDown = value!;
+                });
               },
             ),
           ],
@@ -178,10 +178,8 @@ class _DatePickerAIOState extends State<DatePickerAIO> {
   DateTime? pilihTanggal;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const DrawerMenu(),
-      appBar: AppBar(title: Text("Tanggal Lahir")),
-      body: Center(
+    return Container(
+      child: Center(
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Column(
@@ -198,13 +196,13 @@ class _DatePickerAIOState extends State<DatePickerAIO> {
                     lastDate: DateTime(2100),
                   );
                   if (pickerDate != null) {
-                    setState(() {});
-                    pilihTanggal = pickerDate;
+                    setState(() {
+                      pilihTanggal = pickerDate;
+                    });
                   }
                 },
               ),
               SizedBox(height: 8),
-              // Text(pilihTanggal.toString()),
               Text(
                 pilihTanggal == null
                     ? "Tanggal belum dipilih"
@@ -233,10 +231,8 @@ class _TimePickerAIOState extends State<TimePickerAIO> {
   TimeOfDay? pilihWaktu;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const DrawerMenu(),
-      appBar: AppBar(title: Text("Waktu Pengingat")),
-      body: Center(
+    return Container(
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -250,8 +246,9 @@ class _TimePickerAIOState extends State<TimePickerAIO> {
                   initialTime: TimeOfDay.now(),
                 );
                 if (pickerDate != null) {
-                  setState(() {});
-                  pilihWaktu = pickerDate;
+                  setState(() {
+                    pilihWaktu = pickerDate;
+                  });
                 }
               },
             ),
@@ -259,116 +256,8 @@ class _TimePickerAIOState extends State<TimePickerAIO> {
             Text(
               pilihWaktu == null
                   ? "Waktu belum dipilih"
-                  : "Pengingat diatur pukul: ${pilihWaktu!.hour.toString()} : ${pilihWaktu!.minute.toString()}",
+                  : "Pengingat diatur pukul: ${pilihWaktu!.hour} : ${pilihWaktu!.minute}",
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-  static const id = "/dashboard";
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // color: Colors.blueGrey,
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: (Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 8),
-            Text(
-              "Selamat datang di Dashbord.",
-              style: TextStyle(
-                fontFamily: "FiraSans",
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-            Text(
-              "Slide ke kanan untuk membuka Menu Drawer",
-              style: TextStyle(fontFamily: "FiraSans", fontSize: 14),
-            ),
-          ],
-        )),
-      ),
-    );
-  }
-}
-
-class AboutApps extends StatefulWidget {
-  const AboutApps({super.key});
-  static const id = "/aboutapp";
-
-  @override
-  State<AboutApps> createState() => _AboutAppsState();
-}
-
-class _AboutAppsState extends State<AboutApps> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      margin: EdgeInsets.all(8),
-      decoration: BoxDecoration(),
-      child: SingleChildScrollView(
-        padding: EdgeInsets.all(8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 150, // Tinggi header
-              width: 150,
-              color: const Color(0xFF00224F),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.task, size: 48, color: Colors.white),
-                    SizedBox(height: 12),
-                    Text(
-                      "Tugas Flutter",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              "Tentang Aplikasi",
-              style: TextStyle(
-                fontFamily: "FiraSans",
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-              ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              "Aplikasi ini dibuat dengan Flutter & Dart",
-              style: TextStyle(fontFamily: "FiraSans"),
-            ),
-            SizedBox(height: 8),
-            Text(
-              "Gerry Bagaskoro Putro",
-              style: TextStyle(fontFamily: "FiraSans"),
-            ),
-            SizedBox(height: 8),
-            Text("Versi: 1.0.0", style: TextStyle(fontFamily: "FiraSans")),
           ],
         ),
       ),

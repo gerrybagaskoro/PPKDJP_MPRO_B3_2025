@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/inputwidget_aio.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
+// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start01.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_4/start01.dart';
@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         datePickerTheme: DatePickerThemeData(),
@@ -49,12 +50,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(),
-        '/start': (context) => TugasFlutter7(),
-        '/checkbox': (context) => CheckBoxAIO(),
-        '/switch': (context) => SwitchAIO(),
-        '/dropdown': (context) => DropDownButtonAIO(),
-        '/datepicker': (context) => DatePickerAIO(),
-        '/timepicker': (context) => TimePickerAIO(),
+        '/home': (context) => HomePage(),
+        // '/start': (context) => TugasFlutter7(),
+        // '/checkbox': (context) => CheckBoxAIO(),
+        // '/switch': (context) => SwitchAIO(),
+        // '/dropdown': (context) => DropDownButtonAIO(),
+        // '/datepicker': (context) => DatePickerAIO(),
+        // '/timepicker': (context) => TimePickerAIO(),
 
         // Flutter7CheckBoxAIO.id: (context) => Flutter7CheckBoxAIO(),
         // Flutter7SwitchAIO.id: (context) => Flutter7SwitchAIO(),

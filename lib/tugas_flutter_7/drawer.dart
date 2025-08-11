@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/inputwidget_aio.dart';
 
 class DrawerMenu extends StatelessWidget {
-  const DrawerMenu({super.key});
+  final int selectedIndex;
+  final Function(int) onItemTapped;
+  // const DrawerMenu({super.key});
+  const DrawerMenu({
+    super.key,
+    required this.selectedIndex,
+    required this.onItemTapped,
+    // required BottomNavigationBar bottomNavigationBar,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,54 +41,32 @@ class DrawerMenu extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.check_box),
             title: Text("Checkbox"),
-            onTap: () {
-              // onItemTap(0);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CheckBoxAIO()),
-              );
-            },
+            selected: selectedIndex == 2,
+            onTap: () => onItemTapped(2),
           ),
           ListTile(
             leading: Icon(Icons.switch_access_shortcut),
             title: Text("Switch"),
-            onTap: () {
-              // onItemTap(0);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SwitchAIO()),
-              );
-            },
+            selected: selectedIndex == 3,
+            onTap: () => onItemTapped(3),
           ),
           ListTile(
             leading: Icon(Icons.arrow_drop_down),
             title: Text("Dropdown"),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => DropDownButtonAIO()),
-              );
-            },
+            selected: selectedIndex == 4,
+            onTap: () => onItemTapped(4),
           ),
           ListTile(
             leading: Icon(Icons.date_range),
             title: Text("Tanggal"),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => DatePickerAIO()),
-              );
-            },
+            selected: selectedIndex == 5,
+            onTap: () => onItemTapped(5),
           ),
           ListTile(
             leading: Icon(Icons.timelapse),
             title: Text("Jam"),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => TimePickerAIO()),
-              );
-            },
+            selected: selectedIndex == 6,
+            onTap: () => onItemTapped(6),
           ),
         ],
       ),
