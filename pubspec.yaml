@@ -73,6 +73,16 @@ flutter:
     - assets/images/produk/msi-prestige-14-evo-laptop.jpg
     - assets/images/produk/spectre-hp-x360.png
     - assets/images/icons/iconGoogle.png
+    - assets/images/produkMakananRingan/cheetos.jpg
+    - assets/images/produkMakananRingan/chitato.jpg
+    - assets/images/produkMakananRingan/doritos.jpg
+    - assets/images/produkMakananRingan/jetz.jpg
+    - assets/images/produkMakananRingan/kusuka.jpg
+    - assets/images/produkMakananRingan/lays.jpg
+    - assets/images/produkMakananRingan/oops.jpg
+    - assets/images/produkMakananRingan/potabee.jpg
+    - assets/images/produkMakananRingan/qtela.jpg
+    - assets/images/produkMakananRingan/taro.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

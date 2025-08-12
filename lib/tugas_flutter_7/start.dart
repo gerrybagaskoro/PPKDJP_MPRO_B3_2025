@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_9/listview.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_9/listview_map_string.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_9/model.dart';
 
 // import 'drawer.dart';
 import 'aboutapp.dart';
@@ -24,6 +27,9 @@ class _HomePageState extends State<HomePage> {
     DropDownButtonAIO(), // index 4
     DatePickerAIO(), // index 5
     TimePickerAIO(), // index 6
+    ListViewTugasNo1(), // Index 7
+    ListViewTugasNo2(), // Index 8
+    ListViewTugasNo3(), // Index 9
   ];
 
   void _onItemTapped(int index) {
@@ -98,6 +104,21 @@ class _HomePageState extends State<HomePage> {
               leading: Icon(Icons.timelapse),
               title: Text("Jam"),
               onTap: () => _onDrawerTapped(6),
+            ),
+            ListTile(
+              leading: Icon(Icons.abc),
+              title: Text("ListViewString"),
+              onTap: () => _onDrawerTapped(7),
+            ),
+            ListTile(
+              leading: Icon(Icons.abc),
+              title: Text("ListViewMap"),
+              onTap: () => _onDrawerTapped(8),
+            ),
+            ListTile(
+              leading: Icon(Icons.abc),
+              title: Text("ListViewModel"),
+              onTap: () => _onDrawerTapped(9),
             ),
           ],
         ),

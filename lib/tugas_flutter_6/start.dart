@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -147,13 +148,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                           Future.delayed(const Duration(seconds: 3), () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            );
                             // Navigator.push(
                             //   context,
                             //   MaterialPageRoute(
                             //     builder: (context) => const HomePage(),
                             //   ),
                             // );
-                            Navigator.pushReplacementNamed(context, '/home');
+                            // Navigator.pushReplacementNamed(context, '/home');
                           });
                         } else {
                           showDialog(
