@@ -7,10 +7,13 @@ class MakananRinganModel {
   final String namaMakanan;
   final int hargaMakanan;
   final Color warnaMakanan;
+  final String gambarProduk;
+
   MakananRinganModel({
     required this.namaMakanan,
     required this.hargaMakanan,
     required this.warnaMakanan,
+    required this.gambarProduk,
   });
 
   Map<String, dynamic> toMap() {
@@ -18,6 +21,7 @@ class MakananRinganModel {
       'namaMakanan': namaMakanan,
       'hargaMakanan': hargaMakanan,
       'warnaMakanan': warnaMakanan.value,
+      'gambarProduk': gambarProduk,
     };
   }
 
@@ -26,6 +30,7 @@ class MakananRinganModel {
       namaMakanan: map['Nama Snack'] as String,
       hargaMakanan: map['Harga Makanan'] as int,
       warnaMakanan: Color(map['Warna'] as int),
+      gambarProduk: map['gambarProduk'] as String,
     );
   }
 

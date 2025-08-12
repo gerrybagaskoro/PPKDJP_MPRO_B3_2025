@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Tugas Flutter 7 & 8",
+          "Toko Snack",
           style: TextStyle(fontFamily: "FiraSans", fontSize: 20),
         ),
         centerTitle: true,
