@@ -8,10 +8,12 @@ class HomeSecond extends StatelessWidget {
     this.phone,
     required this.address,
   });
+
   final String name;
   final String email;
   final String? phone;
   final String address;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

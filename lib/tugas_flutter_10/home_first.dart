@@ -72,106 +72,109 @@ class _HomeFirstState extends State<HomeFirst> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        spacing: 4,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Formulir Pendaftaran Kelas Flutter',
-                style: TextStyle(
-                  fontFamily: "FiraSans",
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          spacing: 4,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Formulir Pendaftaran Kelas Flutter',
+                  style: TextStyle(
+                    fontFamily: "FiraSans",
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(height: 12),
-          Text("Nama Lengkap:"),
-          TextFormName(
-            hintText: "Masukkan Nama Lengkap Anda",
-            controller: nameController,
-            validator: _validateName,
-            onChanged: (p0) => setState(() {}),
-          ),
-          SizedBox(height: 6),
-          Text("Email:"),
-          TextFormEmail(
-            hintText: "Masukkan Email",
-            controller: emailController,
-            validator: _validateEmail,
-            onChanged: (p0) => setState(() {}),
-          ),
-          SizedBox(height: 6),
-          Text("No. Telp:"),
-          TextFormPhone(
-            hintText: "Masukkan No. Telp",
-            controller: phoneController,
-            validator: _validatePhone,
-            onChanged: (p0) => setState(() {}),
-            // (p0) {
-            //   setState(() {});
-            // },
-          ),
-          SizedBox(height: 6),
-          Text("Domisili Kota:"),
-          TextFormDomisiliKota(
-            hintText: "Masukkan Domisili Kota Anda",
-            controller: kotaDomilisiController,
-            validator: _validateDomisili,
-            onChanged: (p0) => setState(() {}),
-            // (p0) {
-            //   setState(() {});
-            // },
-          ),
-          SizedBox(height: 6),
+              ],
+            ),
+            SizedBox(height: 12),
+            Text("Nama Lengkap:"),
+            TextFormConst(
+              hintText: "Masukkan Nama Lengkap Anda",
+              controller: nameController,
+              validator: _validateName,
+              onChanged: (p0) => setState(() {}),
+            ),
+            SizedBox(height: 6),
+            Text("Email:"),
+            TextFormConst(
+              hintText: "Masukkan Email",
+              controller: emailController,
+              validator: _validateEmail,
+              onChanged: (p0) => setState(() {}),
+            ),
+            SizedBox(height: 6),
+            Text("No. Telp:"),
+            TextFormConst(
+              hintText: "Masukkan No. Telp",
+              controller: phoneController,
+              validator: _validatePhone,
+              onChanged: (p0) => setState(() {}),
+              // (p0) {
+              //   setState(() {});
+              // },
+            ),
+            SizedBox(height: 6),
+            Text("Domisili Kota:"),
+            TextFormConst(
+              hintText: "Masukkan Domisili Kota Anda",
+              controller: kotaDomilisiController,
+              validator: _validateDomisili,
+              onChanged: (p0) => setState(() {}),
+              // (p0) {
+              //   setState(() {});
+              // },
+            ),
+            SizedBox(height: 6),
 
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                if (__validasiSemua()) {
-                  // Tampilkan snackbar sebelum navigasi
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        'Terima kasih, ${nameController.text} dari ${kotaDomilisiController.text} telah mendaftar.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      duration: Duration(seconds: 3),
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  );
-
-                  // Tunggu sebentar sebelum navigasi
-                  Future.delayed(Duration(milliseconds: 1500), () {
-                    context.push(
-                      HomeSecond(
-                        email: emailController.text,
-                        name: nameController.text,
-                        phone: phoneController.text,
-                        address: kotaDomilisiController.text,
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  if (__validasiSemua()) {
+                    // Tampilkan snackbar sebelum navigasi
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Terima kasih, ${nameController.text} dari ${kotaDomilisiController.text} telah mendaftar.',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        duration: Duration(seconds: 3),
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     );
-                  });
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Silakan periksa kembali data Anda'),
-                      backgroundColor: Colors.red,
-                    ),
-                  );
-                }
-              },
-              child: Text("Daftar"),
+
+                    // Tunggu sebentar sebelum navigasi
+                    Future.delayed(Duration(milliseconds: 1500), () {
+                      context.push(
+                        HomeSecond(
+                          email: emailController.text,
+                          name: nameController.text,
+                          phone: phoneController.text,
+                          address: kotaDomilisiController.text,
+                        ),
+                      );
+                    });
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Silakan periksa kembali data Anda'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
+                },
+                child: Text("Daftar"),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
