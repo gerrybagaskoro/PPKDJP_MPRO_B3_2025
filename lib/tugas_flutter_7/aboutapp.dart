@@ -20,7 +20,7 @@ class AboutApp extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            'Tugas Flutter 7 & 8',
+            'Tugas Flutter 8',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
