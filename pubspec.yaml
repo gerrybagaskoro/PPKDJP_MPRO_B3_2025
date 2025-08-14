@@ -85,6 +85,7 @@ flutter:
     - assets/images/produkMakananRingan/potabee.jpg
     - assets/images/produkMakananRingan/qtela.jpg
     - assets/images/produkMakananRingan/taro.jpg
+    - assets/images/splashscreen/dashboard.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

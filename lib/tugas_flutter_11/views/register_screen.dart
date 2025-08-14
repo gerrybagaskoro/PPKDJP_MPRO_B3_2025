@@ -1,30 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/model/user.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/sqflite/db_helper.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-  static const id = "/loginscreen";
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   @override
   void initState() {
     super.initState();
-    // Initialize any controllers or variables here if needed
   }
 
   @override
   void dispose() {
     emailController.dispose();
-    // Dispose of any controllers or resources here if needed
     super.dispose();
+  }
+
+  void registerUser() async {
+    // isLoading = true;
+    setState(() {});
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+    final name = nameController.text.trim();
+    if (email.isEmpty || password.isEmpty || name.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Email, Password, dan Nama tidak boleh kosong"),
+        ),
+      );
+      // isLoading = false;
+
+      return;
+    }
+    final user = User(email: email, password: password, name: name);
+    await DbHelper.registerUser(user);
+    Future.delayed(const Duration(seconds: 1)).then((value) {
+      // isLoading = false;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Pendaftaran berhasil")));
+    });
+    setState(() {});
+    // isLoading = false;
   }
 
   @override
@@ -197,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       //   context,
                                       //   MaterialPageRoute(
                                       //     builder: (context) =>
-                                      //         LoginScreen01(),
+                                      //         RegisterScreen01(),
                                       //   ),
                                       // );
                                     },

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_10/home_first.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/views/user_screen.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/widgets/log_out_button.dart';
+// Import Drawer
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/aboutapp.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/dashboard.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/inputwidget_aio.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_9/listview.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_9/listview_map_string.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_9/model.dart';
-
-// import 'drawer.dart';
-import 'aboutapp.dart';
-import 'dashboard.dart';
-import 'inputwidget_aio.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,17 +22,19 @@ class _HomePageState extends State<HomePage> {
 
   // Semua halaman jadi satu list (0-2: bottomnav, 3-6: drawer)
   final List<Widget> _pages = [
-    Dashboard(), // index 0
-    AboutApp(), // index 1
-    CheckBoxAIO(), // index 2
-    SwitchAIO(), // index 3
-    DropDownButtonAIO(), // index 4
-    DatePickerAIO(), // index 5
-    TimePickerAIO(), // index 6
-    ListViewTugasNo1(), // Index 7
-    ListViewTugasNo2(), // Index 8
-    ListViewTugasNo3(), // Index 9
-    HomeFirst(),
+    Dashboard(), // Index 0
+    AboutApp(), // Index 1
+    LogOutButton(), //Index 2
+    CheckBoxAIO(), // Index 3
+    SwitchAIO(), // Index 4
+    DropDownButtonAIO(), // Index 5
+    DatePickerAIO(), // Index 6
+    TimePickerAIO(), // Index 7
+    ListViewTugasNo1(), // Index 8
+    ListViewTugasNo2(), // Index 9
+    ListViewTugasNo3(), // Index 10
+    HomeFirst(), // Index 11
+    UserScreen(), // Index 12
   ];
 
   void _onItemTapped(int index) {
@@ -85,54 +88,62 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               leading: Icon(Icons.check_box),
               title: const Text("CheckBox"),
-              onTap: () => _onDrawerTapped(2),
+              onTap: () => _onDrawerTapped(3),
             ),
             ListTile(
               leading: Icon(Icons.switch_access_shortcut),
               title: const Text("Switch"),
-              onTap: () => _onDrawerTapped(3),
+              onTap: () => _onDrawerTapped(4),
             ),
             ListTile(
               leading: Icon(Icons.arrow_drop_down),
               title: Text("Dropdown"),
-              onTap: () => _onDrawerTapped(4),
+              onTap: () => _onDrawerTapped(5),
             ),
             ListTile(
               leading: Icon(Icons.date_range),
               title: Text("Tanggal"),
-              onTap: () => _onDrawerTapped(5),
+              onTap: () => _onDrawerTapped(6),
             ),
             ListTile(
               leading: Icon(Icons.timelapse),
               title: Text("Jam"),
-              onTap: () => _onDrawerTapped(6),
-            ),
-            ListTile(
-              leading: Icon(Icons.abc),
-              title: Text("ListViewString"),
               onTap: () => _onDrawerTapped(7),
             ),
             ListTile(
               leading: Icon(Icons.abc),
-              title: Text("ListViewMap"),
+              title: Text("ListViewString"),
               onTap: () => _onDrawerTapped(8),
             ),
             ListTile(
               leading: Icon(Icons.abc),
-              title: Text("ListViewModel"),
+              title: Text("ListViewMap"),
               onTap: () => _onDrawerTapped(9),
             ),
             ListTile(
               leading: Icon(Icons.abc),
-              title: Text("Parsing Data"),
+              title: Text("ListViewModel"),
               onTap: () => _onDrawerTapped(10),
             ),
+            ListTile(
+              leading: Icon(Icons.abc),
+              title: Text("Parsing Data"),
+              onTap: () => _onDrawerTapped(11),
+            ),
+            ListTile(
+              leading: Icon(Icons.abc),
+              title: Text("SQFLite"),
+              onTap: () => _onDrawerTapped(12),
+            ),
+            // List Tile untuk onDrawerTapped berubah mulai dari 3 ~ 11
           ],
         ),
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex > 1 ? 0 : _selectedIndex,
+        currentIndex: _selectedIndex > 2 ? 0 : _selectedIndex,
+        // currentIndex: _selectedIndex > 2 ? 0 : _selectedIndex,
+        // 0 untuk dashboard, 1 untuk about, dan 2 untuk tombol logout
         // Kalau lagi buka drawer menu, bottomnav tetap highlight dashboard
         onTap: _onItemTapped,
         items: const [
@@ -141,7 +152,7 @@ class _HomePageState extends State<HomePage> {
             label: 'Dashboard',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.android), label: 'About'),
-          // BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
         ],
       ),
     );

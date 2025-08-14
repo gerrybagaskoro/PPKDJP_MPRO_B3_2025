@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/views/splash_screen.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
 // import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
@@ -47,9 +48,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       // Menggunakan Navigator.pushNamed
-      initialRoute: '/',
+      // initialRoute: '/',
+      initialRoute: SplashScreen.id,
       routes: {
-        '/': (context) => LoginScreen(),
+        '/loginscreen': (context) => LoginScreen(),
+        SplashScreen.id: (context) => SplashScreen(),
         '/home': (context) => HomePage(),
         // '/start': (context) => TugasFlutter7(),
         // '/checkbox': (context) => CheckBoxAIO(),
