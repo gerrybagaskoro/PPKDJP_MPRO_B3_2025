@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_10/home_first.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/views/olahraga_screen.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/views/user_screen.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/widgets/log_out_button.dart';
 // Import Drawer
@@ -35,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     ListViewTugasNo3(), // Index 10
     HomeFirst(), // Index 11
     UserScreen(), // Index 12
+    OlahragaScreen(), // Index 13
   ];
 
   void _onItemTapped(int index) {
@@ -132,10 +134,15 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               leading: Icon(Icons.abc),
-              title: Text("SQFLite"),
+              title: Text("Create Read Model User"),
               onTap: () => _onDrawerTapped(12),
             ),
-            // List Tile untuk onDrawerTapped berubah mulai dari 3 ~ 11
+            ListTile(
+              leading: Icon(Icons.abc),
+              title: Text("Create Read Model Olahraga"),
+              onTap: () => _onDrawerTapped(13),
+            ),
+            // List Tile untuk onDrawerTapped berubah mulai dari 3 ~ 13
           ],
         ),
       ),
@@ -152,7 +159,10 @@ class _HomePageState extends State<HomePage> {
             label: 'Dashboard',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.android), label: 'About'),
-          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.exit_to_app),
+            label: 'Session',
+          ),
         ],
       ),
     );

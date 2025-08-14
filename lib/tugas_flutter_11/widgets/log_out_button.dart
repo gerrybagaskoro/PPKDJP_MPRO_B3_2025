@@ -4,6 +4,7 @@ import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/preference/shared_preferenc
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_6/start.dart';
 
 class LogOutButton extends StatelessWidget {
+  static const id = "/logout";
   const LogOutButton({super.key});
 
   @override

@@ -1,5 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/preference/shared_preference.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/sqflite/db_helper.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/views/register_screen.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/dashboard.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -25,6 +30,32 @@ class _LoginScreenState extends State<LoginScreen> {
     emailController.dispose();
     // Dispose of any controllers or resources here if needed
     super.dispose();
+  }
+
+  Future<void> login() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Email dan Password tidak boleh kosong")),
+      );
+      return;
+    }
+
+    final userData = await DbHelper.loginUser(email, password);
+    if (userData != null) {
+      PreferenceHandler.saveLogin();
+      Navigator.pushReplacementNamed(
+        context,
+        Dashboard.id,
+        arguments: userData,
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Email atau Password salah")),
+      );
+    }
   }
 
   @override
@@ -245,7 +276,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Tombol login with Facebook
                   ElevatedButton.icon(
                     onPressed: () {
-                      print("Login with Facebook");
+                      // print("Login with Facebook");
                     },
                     icon: Icon(Icons.facebook, color: Colors.white),
                     label: Text(
@@ -261,7 +292,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Tombol Login with Gmail
                   ElevatedButton.icon(
                     onPressed: () {
-                      print("Login with Gmail");
+                      // print("Login with Gmail");
                     },
                     icon: Image.asset(
                       "assets/images/icons/iconGoogle.png",
@@ -285,19 +316,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     print('Navigasi ke halaman daftar');
                   },
-                  child: const Text.rich(
+                  child: Text.rich(
                     TextSpan(
                       children: [
-                        TextSpan(
-                          text: 'Already have an account? ',
+                        const TextSpan(
+                          text: 'Dont have an account? ',
                           style: TextStyle(color: Colors.grey),
                         ),
                         TextSpan(
-                          text: 'Sign In',
-                          style: TextStyle(
+                          text: 'Sign Up',
+                          style: const TextStyle(
                             color: Colors.blue,
                             fontWeight: FontWeight.bold,
                           ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const RegisterScreen(),
+                                ),
+                              );
+                            },
                         ),
                       ],
                     ),

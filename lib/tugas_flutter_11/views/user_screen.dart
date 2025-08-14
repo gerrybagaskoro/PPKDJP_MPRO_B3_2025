@@ -19,7 +19,7 @@ class _UserScreenState extends State<UserScreen> {
   }
 
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
+  // final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   Future<void> getUser() async {
@@ -38,37 +38,37 @@ class _UserScreenState extends State<UserScreen> {
         child: Column(
           spacing: 4,
           children: [
-            TextFormConst(hintText: "Nama", controller: nameController),
+            // TextFormConst(hintText: "Nama", controller: nameController),
             TextFormConst(hintText: "Email", controller: emailController),
             TextFormConst(hintText: "Password", controller: passwordController),
             ElevatedButton(
               onPressed: () async {
                 final email = emailController.text.trim();
                 final password = passwordController.text.trim();
-                final name = nameController.text.trim();
-                if (email.isEmpty || password.isEmpty || name.isEmpty) {
+                // final name = nameController.text.trim();
+                // if (email.isEmpty || password.isEmpty || name.isEmpty) {
+                if (email.isEmpty || password.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text(
-                        "Email, Password, dan Nama tidak boleh Kosong",
-                      ),
+                      content: Text("Email dan Password tidak boleh kosong!"),
                     ),
                   );
                   return;
                   // getUser();
                   // setState(() {});
                 }
-                final user = User(email: email, password: password, name: name);
+                // final user = User(email: email, password: password, name: name);
+                final user = User(email: email, password: password);
                 await DbHelper.registerUser(user);
                 Future.delayed(const Duration(seconds: 1)).then((value) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Pendaftaran berhasil")),
+                    const SnackBar(content: Text("Pendaftaran akun berhasil")),
                   );
                 });
                 getUser();
                 setState(() {});
               },
-              child: Text("Simpan Data"),
+              child: Text("Simpan Data Akun"),
             ),
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
@@ -77,8 +77,8 @@ class _UserScreenState extends State<UserScreen> {
               itemBuilder: (BuildContext context, int index) {
                 final dataUserLogin = users[index];
                 return ListTile(
-                  title: Text(dataUserLogin.name),
-                  subtitle: Text(dataUserLogin.email),
+                  title: Text(dataUserLogin.email),
+                  subtitle: Text(dataUserLogin.password),
                 );
               },
             ),

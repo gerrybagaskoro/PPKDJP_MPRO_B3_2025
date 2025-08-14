@@ -1,10 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:ppkdjp_mpro_b3_2025/extensions/navigations.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/model/user.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/sqflite/db_helper.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
 
 class RegisterScreen extends StatefulWidget {
+  static const id = "/register";
   const RegisterScreen({super.key});
 
   @override
@@ -15,44 +18,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController nameController = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-  }
-
+  // final TextEditingController nameController = TextEditingController();
+  bool isLoading = false;
   @override
   void dispose() {
     emailController.dispose();
+    passwordController.dispose();
+    // nameController.dispose();
     super.dispose();
   }
 
   void registerUser() async {
-    // isLoading = true;
+    isLoading = true;
     setState(() {});
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
-    final name = nameController.text.trim();
-    if (email.isEmpty || password.isEmpty || name.isEmpty) {
+    // final name = nameController.text.trim();
+    if (email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Email, Password, dan Nama tidak boleh kosong"),
-        ),
+        const SnackBar(content: Text("Email dan Password tidak boleh kosong")),
       );
-      // isLoading = false;
-
+      isLoading = false;
       return;
     }
-    final user = User(email: email, password: password, name: name);
+    final user = User(email: email, password: password);
     await DbHelper.registerUser(user);
-    Future.delayed(const Duration(seconds: 1)).then((value) {
-      // isLoading = false;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Pendaftaran berhasil")));
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      isLoading = false;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Pendaftaran berhasil! Silahkan Login")),
+      );
     });
     setState(() {});
-    // isLoading = false;
+    isLoading = false;
+
+    if (_formKey.currentState!.validate()) return;
+    // setState(() => isLoading = true);
+
+    // setState(() => isLoading = false);
+    // // isLoading = true;
+    // // setState(() {});
+    // ScaffoldMessenger.of(
+    //   context,
+    // ).showSnackBar(const SnackBar(content: Text("Pendaftaran telah berhasil")));
+    // // if (email.isEmpty || password.isEmpty || name.isEmpty) {
+
+    // // final user = User(email: email, password: password, name: name);
   }
 
   @override
@@ -63,7 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         centerTitle: true,
         backgroundColor: const Color(0xFF00224F),
         title: Text(
-          "Login",
+          "Register",
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -87,16 +98,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Padding(padding: const EdgeInsets.all(8)),
                   SizedBox(height: 40),
                   Text(
-                    'Hello Welcome Back',
+                    'Welcome',
                     style: TextStyle(
-                      fontSize: 26,
+                      fontSize: 32,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
                   SizedBox(height: 16),
                   Text(
-                    'Welcome back please\nsign in again',
+                    'Register account for \nnew user ',
                     style: TextStyle(fontSize: 14, color: Colors.grey),
                     textAlign: TextAlign.center,
                   ),
@@ -164,90 +175,116 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                     ),
                     SizedBox(height: 32),
-                    ElevatedButton(
-                      onPressed: () {
-                        //Error dan sukses menggunakan ScaffoldMessenger dan formKey
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                "Login Berhasil! Mengarahkan ke halaman selanjutnya",
-                              ),
-                              duration: Duration(seconds: 3),
-                            ),
-                          );
-                          Future.delayed(const Duration(seconds: 3), () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const HomePage(),
-                              ),
-                            );
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) => const HomePage(),
-                            //   ),
-                            // );
-                            // Navigator.pushReplacementNamed(context, '/home');
-                          });
-                        } else {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text("Peringatan"),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text("Login Gagal"),
-                                    SizedBox(height: 20),
-                                    Lottie.asset(
-                                      'assets/images/animations/error.json',
-                                      width: 200,
-                                      height: 200,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ],
-                                ),
-                                actions: [
-                                  TextButton(
-                                    child: Text("Batal"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                  TextButton(
-                                    child: Text("Lanjutkan"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                      // Navigator.push(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //     builder: (context) =>
-                                      //         RegisterScreen01(),
-                                      //   ),
-                                      // );
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(300, 60),
-                      ),
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF00224F),
+                    SizedBox(
+                      width: 300,
+                      height: 60,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          registerUser();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                         ),
+                        child: isLoading
+                            ? CircularProgressIndicator()
+                            : Text(
+                                "Register",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
                       ),
                     ),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     registerUser();
+                    //     //Error dan sukses menggunakan ScaffoldMessenger dan formKey
+                    //     if (_formKey.currentState!.validate()) {
+                    //       ScaffoldMessenger.of(context).showSnackBar(
+                    //         SnackBar(
+                    //           content: Text(
+                    //             "Login Berhasil! Mengarahkan ke halaman selanjutnya",
+                    //           ),
+                    //           duration: Duration(seconds: 3),
+                    //         ),
+                    //       );
+                    //       Future.delayed(const Duration(seconds: 3), () {
+                    //         Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //             builder: (context) => const HomePage(),
+                    //           ),
+                    //         );
+                    //         // Navigator.push(
+                    //         //   context,
+                    //         //   MaterialPageRoute(
+                    //         //     builder: (context) => const HomePage(),
+                    //         //   ),
+                    //         // );
+                    //         // Navigator.pushReplacementNamed(context, '/home');
+                    //       });
+                    //     } else {
+                    //       showDialog(
+                    //         context: context,
+                    //         builder: (BuildContext context) {
+                    //           return AlertDialog(
+                    //             title: Text("Peringatan"),
+                    //             content: Column(
+                    //               mainAxisSize: MainAxisSize.min,
+                    //               children: [
+                    //                 Text("Login Gagal"),
+                    //                 SizedBox(height: 20),
+                    //                 Lottie.asset(
+                    //                   'assets/images/animations/error.json',
+                    //                   width: 200,
+                    //                   height: 200,
+                    //                   fit: BoxFit.cover,
+                    //                 ),
+                    //               ],
+                    //             ),
+                    //             actions: [
+                    //               TextButton(
+                    //                 child: Text("Ulang"),
+                    //                 onPressed: () {
+                    //                   Navigator.of(context).pop();
+                    //                 },
+                    //               ),
+                    //               // TextButton(
+                    //               //   child: Text("Lanjutkan"),
+                    //               //   onPressed: () {
+                    //               //     Navigator.of(context).pop();
+                    //               //     // Navigator.push(
+                    //               //     //   context,
+                    //               //     //   MaterialPageRoute(
+                    //               //     //     builder: (context) =>
+                    //               //     //         RegisterScreen01(),
+                    //               //     //   ),
+                    //               //     // );
+                    //               //   },
+                    //               // ),
+                    //             ],
+                    //           );
+                    //         },
+                    //       );
+                    //     }
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     minimumSize: Size(300, 60),
+                    //   ),
+                    //   child: Text(
+                    //     "Register",
+                    //     style: TextStyle(
+                    //       fontSize: 16,
+                    //       fontWeight: FontWeight.bold,
+                    //       color: Color(0xFF00224F),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -267,65 +304,69 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 24),
               // Center(),
-              Column(
-                children: [
-                  Center(),
-                  // Tombol login with Facebook
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      print("Login with Facebook");
-                    },
-                    icon: Icon(Icons.facebook, color: Colors.white),
-                    label: Text(
-                      "Facebook",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF11325C),
-                      minimumSize: Size(300, 60),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  // Tombol Login with Gmail
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      print("Login with Gmail");
-                    },
-                    icon: Image.asset(
-                      "assets/images/icons/iconGoogle.png",
-                      height: 16,
-                      width: 16,
-                    ),
-                    label: Text(
-                      "Gmail",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF11325C),
-                      minimumSize: Size(300, 60),
-                    ),
-                  ),
-                ],
-              ),
+              // Column(
+              //   children: [
+              //     Center(),
+              //     // Tombol login with Facebook
+              //     ElevatedButton.icon(
+              //       onPressed: () {
+              //         // print("Login with Facebook");
+              //       },
+              //       icon: Icon(Icons.facebook, color: Colors.white),
+              //       label: Text(
+              //         "Facebook",
+              //         style: TextStyle(color: Colors.white, fontSize: 16),
+              //       ),
+              //       style: ElevatedButton.styleFrom(
+              //         backgroundColor: const Color(0xFF11325C),
+              //         minimumSize: Size(300, 60),
+              //       ),
+              //     ),
+              //     SizedBox(height: 16),
+              //     // Tombol Login with Gmail
+              //     ElevatedButton.icon(
+              //       onPressed: () {
+              //         // print("Login with Gmail");
+              //       },
+              //       icon: Image.asset(
+              //         "assets/images/icons/iconGoogle.png",
+              //         height: 16,
+              //         width: 16,
+              //       ),
+              //       label: Text(
+              //         "Gmail",
+              //         style: TextStyle(color: Colors.white, fontSize: 16),
+              //       ),
+              //       style: ElevatedButton.styleFrom(
+              //         backgroundColor: const Color(0xFF11325C),
+              //         minimumSize: Size(300, 60),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               SizedBox(height: 16),
               Center(
                 child: GestureDetector(
                   onTap: () {
-                    print('Navigasi ke halaman daftar');
+                    // print('Navigasi ke halaman daftar');
                   },
-                  child: const Text.rich(
+                  child: Text.rich(
                     TextSpan(
                       children: [
-                        TextSpan(
+                        const TextSpan(
                           text: 'Already have an account? ',
                           style: TextStyle(color: Colors.grey),
                         ),
                         TextSpan(
                           text: 'Sign In',
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.blue,
                             fontWeight: FontWeight.bold,
                           ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              context.pop();
+                            },
                         ),
                       ],
                     ),

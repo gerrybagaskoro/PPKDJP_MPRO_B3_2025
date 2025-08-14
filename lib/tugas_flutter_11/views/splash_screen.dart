@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:ppkdjp_mpro_b3_2025/extensions/navigations.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/preference/shared_preference.dart';
@@ -15,7 +17,6 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  @override
   void initState() {
     super.initState();
     isLogin();
@@ -25,11 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
     bool? isLogin = await PreferenceHandler.getLogin();
 
     Future.delayed(Duration(seconds: 3)).then((value) async {
-      print(isLogin);
+      // print(isLogin);
       if (isLogin == true) {
         context.pushReplacementNamed(Dashboard.id);
       } else {
-        context.push(LoginScreen());
+        context.pushReplacement(LoginScreen());
       }
     });
   }
