@@ -7,7 +7,7 @@ class PreferenceHandler {
     await prefs.setBool(loginKey, true);
   }
 
-  static Future<bool?>? getLogin() async {
+  static getLogin() async {
     print(loginKey);
     final prefs = await SharedPreferences.getInstance();
     prefs.getBool(loginKey);

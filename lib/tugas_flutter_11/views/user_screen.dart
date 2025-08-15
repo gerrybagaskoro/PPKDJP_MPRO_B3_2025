@@ -19,12 +19,12 @@ class _UserScreenState extends State<UserScreen> {
   }
 
   final TextEditingController emailController = TextEditingController();
-  // final TextEditingController nameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   Future<void> getUser() async {
     final dataUser = await DbHelper.getAllUsers();
-    print(dataUser);
+    // print(dataUser);
     setState(() {
       users = dataUser;
     });
@@ -38,31 +38,31 @@ class _UserScreenState extends State<UserScreen> {
         child: Column(
           spacing: 4,
           children: [
-            // TextFormConst(hintText: "Nama", controller: nameController),
+            TextFormConst(hintText: "Nama", controller: nameController),
             TextFormConst(hintText: "Email", controller: emailController),
             TextFormConst(hintText: "Password", controller: passwordController),
             ElevatedButton(
               onPressed: () async {
                 final email = emailController.text.trim();
                 final password = passwordController.text.trim();
-                // final name = nameController.text.trim();
-                // if (email.isEmpty || password.isEmpty || name.isEmpty) {
-                if (email.isEmpty || password.isEmpty) {
+                final name = nameController.text.trim();
+                if (email.isEmpty || password.isEmpty || name.isEmpty) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text("Email dan Password tidak boleh kosong!"),
+                      content: Text(
+                        "Email, Password, dan Nama tidak boleh kosong",
+                      ),
                     ),
                   );
                   return;
                   // getUser();
                   // setState(() {});
                 }
-                // final user = User(email: email, password: password, name: name);
-                final user = User(email: email, password: password);
+                final user = User(email: email, password: password, name: name);
                 await DbHelper.registerUser(user);
                 Future.delayed(const Duration(seconds: 1)).then((value) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Pendaftaran akun berhasil")),
+                    const SnackBar(content: Text("Pendaftaran berhasil")),
                   );
                 });
                 getUser();
@@ -77,8 +77,73 @@ class _UserScreenState extends State<UserScreen> {
               itemBuilder: (BuildContext context, int index) {
                 final dataUserLogin = users[index];
                 return ListTile(
-                  title: Text(dataUserLogin.email),
-                  subtitle: Text(dataUserLogin.password),
+                  title: Text(dataUserLogin.name),
+                  subtitle: Text(dataUserLogin.email),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text('Edit Data'),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextFormConst(
+                                    controller: nameController
+                                      ..text = dataUserLogin.name,
+                                    hintText: 'Nama',
+                                  ),
+                                  SizedBox(height: 12),
+                                  TextFormConst(
+                                    controller: emailController
+                                      ..text = dataUserLogin.email,
+                                    hintText: 'Email',
+                                  ),
+                                  SizedBox(height: 12),
+                                  TextFormConst(
+                                    controller: passwordController
+                                      ..text = dataUserLogin.password,
+                                    hintText: 'Password',
+                                  ),
+                                ],
+                              ),
+                              actions: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    final dataUser = User(
+                                      id: dataUserLogin.id!,
+                                      email: emailController.text,
+                                      password: passwordController.text,
+                                      name: nameController.text.trim(),
+                                    );
+                                    DbHelper.updateUser(dataUser);
+                                    getUser();
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('Simpan'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text('Batal'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.edit),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          DbHelper.deleteUser(dataUserLogin.id!);
+                          getUser();
+                        },
+                        icon: Icon(Icons.delete),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

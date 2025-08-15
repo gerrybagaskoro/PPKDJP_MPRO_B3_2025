@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_10/home_first.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/views/olahraga_screen.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/views/user_screen.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/widgets/log_out_button.dart';
 // Import Drawer
@@ -36,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     ListViewTugasNo3(), // Index 10
     HomeFirst(), // Index 11
     UserScreen(), // Index 12
-    OlahragaScreen(), // Index 13
+    // OlahragaScreen(), // Index 13
   ];
 
   void _onItemTapped(int index) {

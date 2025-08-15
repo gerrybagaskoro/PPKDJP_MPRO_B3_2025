@@ -18,13 +18,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  // final TextEditingController nameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   bool isLoading = false;
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    // nameController.dispose();
+    nameController.dispose();
     super.dispose();
   }
 
@@ -33,7 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() {});
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
-    // final name = nameController.text.trim();
+    final name = nameController.text.trim();
     if (email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Email dan Password tidak boleh kosong")),
@@ -41,9 +41,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       isLoading = false;
       return;
     }
-    final user = User(email: email, password: password);
+    final user = User(email: email, password: password, name: name);
     await DbHelper.registerUser(user);
-    Future.delayed(const Duration(seconds: 3)).then((value) {
+    Future.delayed(const Duration(seconds: 1)).then((value) {
       isLoading = false;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Pendaftaran berhasil! Silahkan Login")),
@@ -52,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() {});
     isLoading = false;
 
-    if (_formKey.currentState!.validate()) return;
+    // if (_formKey.currentState!.validate()) return;
     // setState(() => isLoading = true);
 
     // setState(() => isLoading = false);
@@ -200,91 +200,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               ),
                       ),
                     ),
-                    // ElevatedButton(
-                    //   onPressed: () {
-                    //     registerUser();
-                    //     //Error dan sukses menggunakan ScaffoldMessenger dan formKey
-                    //     if (_formKey.currentState!.validate()) {
-                    //       ScaffoldMessenger.of(context).showSnackBar(
-                    //         SnackBar(
-                    //           content: Text(
-                    //             "Login Berhasil! Mengarahkan ke halaman selanjutnya",
-                    //           ),
-                    //           duration: Duration(seconds: 3),
-                    //         ),
-                    //       );
-                    //       Future.delayed(const Duration(seconds: 3), () {
-                    //         Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) => const HomePage(),
-                    //           ),
-                    //         );
-                    //         // Navigator.push(
-                    //         //   context,
-                    //         //   MaterialPageRoute(
-                    //         //     builder: (context) => const HomePage(),
-                    //         //   ),
-                    //         // );
-                    //         // Navigator.pushReplacementNamed(context, '/home');
-                    //       });
-                    //     } else {
-                    //       showDialog(
-                    //         context: context,
-                    //         builder: (BuildContext context) {
-                    //           return AlertDialog(
-                    //             title: Text("Peringatan"),
-                    //             content: Column(
-                    //               mainAxisSize: MainAxisSize.min,
-                    //               children: [
-                    //                 Text("Login Gagal"),
-                    //                 SizedBox(height: 20),
-                    //                 Lottie.asset(
-                    //                   'assets/images/animations/error.json',
-                    //                   width: 200,
-                    //                   height: 200,
-                    //                   fit: BoxFit.cover,
-                    //                 ),
-                    //               ],
-                    //             ),
-                    //             actions: [
-                    //               TextButton(
-                    //                 child: Text("Ulang"),
-                    //                 onPressed: () {
-                    //                   Navigator.of(context).pop();
-                    //                 },
-                    //               ),
-                    //               // TextButton(
-                    //               //   child: Text("Lanjutkan"),
-                    //               //   onPressed: () {
-                    //               //     Navigator.of(context).pop();
-                    //               //     // Navigator.push(
-                    //               //     //   context,
-                    //               //     //   MaterialPageRoute(
-                    //               //     //     builder: (context) =>
-                    //               //     //         RegisterScreen01(),
-                    //               //     //   ),
-                    //               //     // );
-                    //               //   },
-                    //               // ),
-                    //             ],
-                    //           );
-                    //         },
-                    //       );
-                    //     }
-                    //   },
-                    //   style: ElevatedButton.styleFrom(
-                    //     minimumSize: Size(300, 60),
-                    //   ),
-                    //   child: Text(
-                    //     "Register",
-                    //     style: TextStyle(
-                    //       fontSize: 16,
-                    //       fontWeight: FontWeight.bold,
-                    //       color: Color(0xFF00224F),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -303,47 +218,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ],
               ),
               const SizedBox(height: 24),
-              // Center(),
-              // Column(
-              //   children: [
-              //     Center(),
-              //     // Tombol login with Facebook
-              //     ElevatedButton.icon(
-              //       onPressed: () {
-              //         // print("Login with Facebook");
-              //       },
-              //       icon: Icon(Icons.facebook, color: Colors.white),
-              //       label: Text(
-              //         "Facebook",
-              //         style: TextStyle(color: Colors.white, fontSize: 16),
-              //       ),
-              //       style: ElevatedButton.styleFrom(
-              //         backgroundColor: const Color(0xFF11325C),
-              //         minimumSize: Size(300, 60),
-              //       ),
-              //     ),
-              //     SizedBox(height: 16),
-              //     // Tombol Login with Gmail
-              //     ElevatedButton.icon(
-              //       onPressed: () {
-              //         // print("Login with Gmail");
-              //       },
-              //       icon: Image.asset(
-              //         "assets/images/icons/iconGoogle.png",
-              //         height: 16,
-              //         width: 16,
-              //       ),
-              //       label: Text(
-              //         "Gmail",
-              //         style: TextStyle(color: Colors.white, fontSize: 16),
-              //       ),
-              //       style: ElevatedButton.styleFrom(
-              //         backgroundColor: const Color(0xFF11325C),
-              //         minimumSize: Size(300, 60),
-              //       ),
-              //     ),
-              //   ],
-              // ),
+
               SizedBox(height: 16),
               Center(
                 child: GestureDetector(
