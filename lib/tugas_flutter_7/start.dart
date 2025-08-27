@@ -36,8 +36,8 @@ class _HomePageState extends State<HomePage> {
     ListViewTugasNo3(), // Index 10
     HomeFirst(), // Index 11
     UserScreen(), // Index 12
-    Day23GetAPIScreen(),
-    // OlahragaScreen(), // Index 13
+    GetAPIScreen(), // Index 13
+    // OlahragaScreen(), // Index 14
   ];
 
   void _onItemTapped(int index) {
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Toko Snack",
+          "",
           style: TextStyle(fontFamily: "FiraSans", fontSize: 20),
         ),
         centerTitle: true,
@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               leading: Icon(Icons.abc),
               title: Text("Create Read Model Olahraga"),
-              onTap: () => _onDrawerTapped(13),
+              onTap: () {},
             ),
             ListTile(
               leading: Icon(Icons.abc),
