@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:ppkdjp_mpro_b3_2025/preference/shared_preference.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_15/api/register_user.dart';
@@ -53,7 +55,10 @@ class _PostApiScreenState extends State<PostApiScreen> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text("Pendaftaran berhasil")));
-      PreferenceHandler.saveToken(user?.data?.token.toString() ?? "");
+
+      // Perbaikan di sini:
+      await PreferenceHandler.saveToken(user?.data?.token.toString() ?? "");
+
       print(user?.toJson());
     } catch (e) {
       print(e);

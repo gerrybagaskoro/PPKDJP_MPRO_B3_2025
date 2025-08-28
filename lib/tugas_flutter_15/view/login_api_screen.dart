@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:ppkdjp_mpro_b3_2025/extensions/navigations.dart';
 import 'package:ppkdjp_mpro_b3_2025/preference/shared_preference.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/sqflite/db_helper.dart';
+// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/sqflite/db_helper.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_15/api/register_user.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_15/view/post_api_screen.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/start.dart';
 
@@ -18,6 +19,7 @@ class _LoginAPIScreenState extends State<LoginAPIScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isVisibility = false;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: Stack(children: [buildBackground(), buildLayer()]));
@@ -26,22 +28,41 @@ class _LoginAPIScreenState extends State<LoginAPIScreen> {
   login() async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
+
     if (email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Email dan Password tidak boleh kosong")),
       );
-      // isLoading = false;
-
       return;
     }
-    final userData = await DbHelper.loginUser(email, password);
-    if (userData != null) {
-      PreferenceHandler.saveLogin();
-      context.pushReplacementNamed(HomePage.id);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Email atau Password salah")),
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final result = await AuthenticationAPI.loginUser(
+        email: email,
+        password: password,
       );
+
+      // Simpan token dan status login
+      await PreferenceHandler.saveToken(result.data?.token ?? "");
+      await PreferenceHandler.saveLogin();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result.message ?? "Login berhasil")),
+      );
+
+      context.pushReplacementNamed(HomePage.id);
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
@@ -99,28 +120,30 @@ class _LoginAPIScreenState extends State<LoginAPIScreen> {
                   ),
                 ),
               ),
-              height(24),
               SizedBox(
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
-                  onPressed: () {
-                    login();
-                  },
+                  onPressed: isLoading
+                      ? null
+                      : () {
+                          login();
+                        },
                   style: ElevatedButton.styleFrom(
-                    // backgroundColor: AppColor.blueButton,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                     ),
                   ),
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
+                  child: isLoading
+                      ? CircularProgressIndicator(color: Colors.white)
+                      : Text(
+                          "Login",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
                 ),
               ),
               height(16),

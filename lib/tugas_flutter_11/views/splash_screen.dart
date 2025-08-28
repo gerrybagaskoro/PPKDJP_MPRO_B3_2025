@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:ppkdjp_mpro_b3_2025/extensions/navigations.dart';
@@ -24,16 +24,24 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void isLogin() async {
-    bool? isLogin = await PreferenceHandler.getLogin();
+    try {
+      bool? isLogin = await PreferenceHandler.getLogin();
+      String? token = await PreferenceHandler.getToken();
 
-    Future.delayed(Duration(seconds: 3)).then((value) async {
-      // print(isLogin);
-      if (isLogin == true) {
+      print('isLogin: $isLogin');
+      print('token: $token');
+
+      await Future.delayed(Duration(seconds: 3));
+
+      if (isLogin == true && token != null && token.isNotEmpty) {
         context.pushReplacementNamed(Dashboard.id);
       } else {
         context.pushReplacement(LoginAPIScreen());
       }
-    });
+    } catch (e) {
+      print('Error in isLogin: $e');
+      context.pushReplacement(LoginAPIScreen());
+    }
   }
 
   @override

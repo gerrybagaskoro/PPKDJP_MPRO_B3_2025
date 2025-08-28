@@ -25,12 +25,34 @@ class AuthenticationAPI {
     }
   }
 
+  static Future<RegisterUserModel> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    final url = Uri.parse(Endpoint.login);
+    final response = await http.post(
+      url,
+      body: {"email": email, "password": password},
+    );
+
+    if (response.statusCode == 200) {
+      return RegisterUserModel.fromJson(json.decode(response.body));
+    } else {
+      final error = json.decode(response.body);
+      throw Exception(error["message"] ?? "Login gagal");
+    }
+  }
+
   static Future<GetUserModel> getProfile() async {
     final url = Uri.parse(Endpoint.profile);
     final token = await PreferenceHandler.getToken();
+    if (token == null) {
+      throw Exception("Token tidak tersedia. Silakan login kembali.");
+    }
+
     final response = await http.get(
       url,
-      headers: {"Accept": "application/json", "Authorization": token},
+      headers: {"Accept": "application/json", "Authorization": "Bearer $token"},
     );
     if (response.statusCode == 200) {
       return GetUserModel.fromJson(json.decode(response.body));
