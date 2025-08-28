@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/preference/shared_preference.dart';
+import 'package:ppkdjp_mpro_b3_2025/preference/shared_preference.dart';
+// import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/preference/shared_preference.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/sqflite/db_helper.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/views/register_screen.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/dashboard.dart';

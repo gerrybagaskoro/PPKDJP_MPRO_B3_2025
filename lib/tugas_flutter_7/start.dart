@@ -13,6 +13,7 @@ import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_9/model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+  static const id = "/homepage";
 
   @override
   State<HomePage> createState() => _HomePageState();
