@@ -5,6 +5,7 @@ import 'package:ppkdjp_mpro_b3_2025/preference/shared_preference.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_15/api/endpoint/endpoint.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_15/model/get_user_model.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_15/model/register_model.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_15/model/update_model.dart';
 
 class AuthenticationAPI {
   static Future<RegisterUserModel> registerUser({
@@ -59,6 +60,35 @@ class AuthenticationAPI {
     } else {
       final error = json.decode(response.body);
       throw Exception(error["message"] ?? "Register gagal");
+    }
+  }
+
+  static Future<UpdateProfileModel> updateProfile({
+    required String name,
+    required String email,
+  }) async {
+    final url = Uri.parse(Endpoint.profile);
+    final token = await PreferenceHandler.getToken();
+
+    if (token == null) {
+      throw Exception("Token tidak tersedia. Silakan login kembali.");
+    }
+
+    final response = await http.put(
+      url,
+      headers: {
+        "Accept": "application/json",
+        "Authorization": "Bearer $token",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: {"name": name, "email": email},
+    );
+
+    if (response.statusCode == 200) {
+      return UpdateProfileModel.fromJson(json.decode(response.body));
+    } else {
+      final error = json.decode(response.body);
+      throw Exception(error["message"] ?? "Update profile gagal");
     }
   }
 }

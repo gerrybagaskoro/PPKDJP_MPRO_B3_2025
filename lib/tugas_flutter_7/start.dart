@@ -3,6 +3,7 @@ import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_10/home_first.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/views/user_screen.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_11/widgets/log_out_button.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_14/view/get_api.dart';
+import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_15/view/profile_screen.dart';
 // Import Drawer
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/aboutapp.dart';
 import 'package:ppkdjp_mpro_b3_2025/tugas_flutter_7/dashboard.dart';
@@ -38,7 +39,8 @@ class _HomePageState extends State<HomePage> {
     HomeFirst(), // Index 11
     UserScreen(), // Index 12
     GetAPIScreen(), // Index 13
-    // OlahragaScreen(), // Index 14
+    ProfileScreen(), // Index 14
+    // OlahragaScreen(), // Index 15
   ];
 
   void _onItemTapped(int index) {
@@ -148,6 +150,11 @@ class _HomePageState extends State<HomePage> {
               leading: Icon(Icons.abc),
               title: Text("Create API"),
               onTap: () => _onDrawerTapped(13),
+            ),
+            ListTile(
+              leading: Icon(Icons.abc),
+              title: Text("Profile API"),
+              onTap: () => _onDrawerTapped(14),
             ),
             // List Tile untuk onDrawerTapped berubah mulai dari 3 ~ 13
           ],
